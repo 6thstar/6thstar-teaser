@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expectation Alignment Engine&trade;</title>
+<meta name="description" content="Expectation Alignment Engine &mdash; Behavioral Science. Productized. Patent Pending.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;color:#1a1a1a;overflow:hidden;height:100vh;width:100vw}
+
+.slide{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:#fff;
+  opacity:0;pointer-events:none;
+  z-index:1;
+}
+.slide.active{opacity:1;pointer-events:auto;z-index:10}
+
+.slide-phrase{
+  font-size:clamp(16px,2.6vw,36px);
+  font-weight:200;
+  letter-spacing:0.05em;
+  line-height:1.4;
+  text-align:center;
+  white-space:nowrap;
+  padding:0 24px;
+  margin-bottom:12px;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.slide-phrase.show{opacity:1}
+
+.slide-phrase-sub{
+  font-size:clamp(16px,2.6vw,36px);
+  font-weight:200;
+  letter-spacing:0.05em;
+  line-height:1.4;
+  text-align:center;
+  white-space:nowrap;
+  padding:0 24px;
+  margin-bottom:36px;
+  color:#1a1a1a;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+.slide-phrase-sub.show{opacity:1}
+
+.slide-image{
+  max-width:min(85vw,900px);
+  max-height:55vh;
+  object-fit:contain;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+/* Slide 1 & 6: 6thSTAR mark — smaller, centered */
+.slide-image.mark{
+  max-width:min(40vw,380px);
+  max-height:40vh;
+}
+.slide-image.show{opacity:1}
+
+/* Fade-out */
+.slide.fading-out{
+  transition:opacity 0.6s ease;
+  opacity:0;
+}
+
+/* Progress bar */
+.progress{position:fixed;bottom:0;left:0;height:2px;background:#F5A623;z-index:100;transition:width 0.1s linear}
+
+/* Persistent controls — bottom corners, always visible */
+.ctrl-replay{
+  position:fixed;bottom:18px;left:24px;z-index:200;
+  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
+  color:#999;background:none;border:1px solid #ddd;
+  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
+}
+.ctrl-replay:hover{color:#1a1a1a;border-color:#999}
+
+.ctrl-contact{
+  position:fixed;bottom:18px;right:24px;z-index:200;
+  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
+  color:#999;background:none;border:1px solid #ddd;
+  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
+  text-decoration:none;
+}
+.ctrl-contact:hover{color:#1a1a1a;border-color:#999}
+
+.ctrl-pause{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:200;
+  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
+  color:#999;background:none;border:1px solid #ddd;
+  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
+}
+.ctrl-pause:hover{color:#1a1a1a;border-color:#999}
+
+/* Contact overlay */
+.contact-overlay{
+  position:fixed;inset:0;background:rgba(255,255,255,0.96);
+  display:flex;align-items:center;justify-content:center;
+  z-index:500;opacity:0;pointer-events:none;transition:opacity 0.3s ease;
+}
+.contact-overlay.open{opacity:1;pointer-events:auto}
+.contact-card{text-align:center;max-width:400px;padding:40px}
+.contact-card h2{font-size:20px;font-weight:300;letter-spacing:0.06em;margin-bottom:6px}
+.contact-card .company{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#888;margin-bottom:28px}
+.contact-card .detail{font-size:13px;font-weight:300;line-height:2;color:#444}
+.contact-card .detail a{color:#444;text-decoration:none;border-bottom:1px solid #ddd}
+.contact-card .detail a:hover{color:#1a1a1a;border-color:#999}
+.contact-close{
+  margin-top:28px;font-size:9px;font-weight:500;text-transform:uppercase;
+  letter-spacing:0.12em;color:#999;background:none;border:1px solid #ddd;
+  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
+}
+.contact-close:hover{color:#1a1a1a;border-color:#999}
+
+/* Footer */
+.footer{
+  position:fixed;bottom:4px;left:50%;transform:translateX(-50%);
+  font-size:7px;text-transform:uppercase;letter-spacing:0.12em;color:#ccc;z-index:100;
+  white-space:nowrap;
+}
+
+/* ── Mobile ── */
+@media (max-width:768px){
+  .slide-phrase,.slide-phrase-sub{
+    font-size:clamp(12px,3.8vw,22px);
+    padding:0 16px;
+    margin-bottom:8px;
+  }
+  .slide-image{
+    max-width:90vw;
+    max-height:45vh;
+  }
+  .slide-image.mark{
+    max-width:50vw;
+    max-height:30vh;
+  }
+  .ctrl-replay,.ctrl-contact,.ctrl-pause{
+    bottom:14px;font-size:8px;padding:5px 10px;
+  }
+  .ctrl-replay{left:14px}
+  .ctrl-contact{right:14px}
+  .footer{font-size:6px;letter-spacing:0.08em}
+  .contact-card{padding:24px}
+  .contact-card h2{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1 -->
+<div class="slide" id="s0">
+  <div class="slide-phrase">$1.6 Trillion Global Cost of eCommerce Returns</div>
+  <div class="slide-phrase-sub">$675 Billion &ldquo;significantly not as described&rdquo;</div>
+  <img class="slide-image mark" src="teaser_images/slide_1.png" alt="">
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="s1">
+  <div class="slide-phrase">Journey: Belief &rarr; Reliance &rarr; Expectation &rarr; Action</div>
+  <img class="slide-image" src="teaser_images/slide_2.png" alt="">
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="s2">
+  <div class="slide-phrase">eaWHISPER&trade; &mdash; 7 words or less</div>
+  <img class="slide-image" src="teaser_images/slide_3.png" alt="">
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="s3">
+  <div class="slide-phrase">Expectation Alignment Engine&trade;</div>
+  <div class="slide-phrase-sub">Today</div>
+  <img class="slide-image" src="teaser_images/slide_4.png" alt="">
+</div>
+
+<!-- Slide 5 -->
+<div class="slide" id="s4">
+  <div class="slide-phrase">Behavioral Science. Productized.</div>
+  <img class="slide-image" src="teaser_images/slide_5.png" alt="">
+</div>
+
+<!-- Slide 6 -->
+<div class="slide" id="s5">
+  <div class="slide-phrase">Expectation Alignment Engine&trade;</div>
+  <div class="slide-phrase-sub">Patent Pending</div>
+  <img class="slide-image mark" src="teaser_images/slide_6.png" alt="">
+</div>
+
+<!-- Persistent controls -->
+<button class="ctrl-replay" id="replay-btn">Replay</button>
+<button class="ctrl-pause" id="pause-btn">Pause</button>
+<button class="ctrl-contact" id="contact-btn">Contact</button>
+
+<!-- Contact overlay -->
+<div class="contact-overlay" id="contact-overlay">
+  <div class="contact-card">
+    <h2>Tracy Rosen</h2>
+    <div class="company">Rosen Group, LLC</div>
+    <div class="detail">
+      <a href="tel:+18023188131">802.318.8131</a><br>
+      <a href="mailto:trosen@rosengroup.us">trosen@rosengroup.us</a>
+    </div>
+    <button class="contact-close" id="contact-close">Close</button>
+  </div>
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="footer">Expectation Alignment Engine&trade; &middot; US Patent Pending &middot; &copy; Rosen Group, LLC 2026</div>
+
+<script>
+(function(){
+  var SLIDE_DURATION = 6000;    // 6s per slide
+  var PHRASE_START   = 0;       // line 1 fades in immediately
+  var SUB_START      = 1200;    // line 2 fades in at 1.2s
+  var IMAGE_START    = 2400;    // image fades in at 2.4s
+  var FADEOUT_START  = 5400;    // fade-out begins at 5.4s
+
+  var slides = document.querySelectorAll('.slide');
+  var total  = slides.length;
+  var current = 0;
+  var slideStart = 0;
+  var running = true;
+  var paused = false;
+  var pausedElapsed = 0;
+  var progressEl = document.getElementById('progress');
+  var pauseBtn = document.getElementById('pause-btn');
+
+  function resetSlide(el) {
+    el.classList.remove('active','fading-out');
+    var p = el.querySelector('.slide-phrase');
+    var ps = el.querySelector('.slide-phrase-sub');
+    var img = el.querySelector('.slide-image');
+    if (p) p.classList.remove('show');
+    if (ps) ps.classList.remove('show');
+    if (img) img.classList.remove('show');
+  }
+
+  function startSlide(n) {
+    for (var i = 0; i < total; i++) resetSlide(slides[i]);
+    slides[n].classList.add('active');
+    slideStart = Date.now();
+  }
+
+  function tick() {
+    if (!running || paused) return;
+    var elapsed = Date.now() - slideStart;
+    var el = slides[current];
+    var p = el.querySelector('.slide-phrase');
+    var ps = el.querySelector('.slide-phrase-sub');
+    var img = el.querySelector('.slide-image');
+
+    if (elapsed >= PHRASE_START && p && !p.classList.contains('show')) {
+      p.classList.add('show');
+    }
+    if (elapsed >= SUB_START && ps && !ps.classList.contains('show')) {
+      ps.classList.add('show');
+    }
+    if (elapsed >= IMAGE_START && img && !img.classList.contains('show')) {
+      img.classList.add('show');
+    }
+    if (elapsed >= FADEOUT_START && !el.classList.contains('fading-out')) {
+      el.classList.add('fading-out');
+    }
+
+    if (elapsed >= SLIDE_DURATION) {
+      current++;
+      if (current >= total) {
+        progressEl.style.width = '100%';
+        current = total - 1;
+        setTimeout(function(){
+          var last = slides[total - 1];
+          last.classList.remove('fading-out');
+          last.classList.add('active');
+          var p2 = last.querySelector('.slide-phrase');
+          var ps2 = last.querySelector('.slide-phrase-sub');
+          var img2 = last.querySelector('.slide-image');
+          if (p2) p2.classList.add('show');
+          if (ps2) ps2.classList.add('show');
+          if (img2) img2.classList.add('show');
+        }, 700);
+        running = false;
+        return;
+      }
+      startSlide(current);
+    }
+
+    var totalElapsed = current * SLIDE_DURATION + Math.min(elapsed, SLIDE_DURATION);
+    var totalDuration = total * SLIDE_DURATION;
+    progressEl.style.width = (totalElapsed / totalDuration * 100) + '%';
+
+    requestAnimationFrame(tick);
+  }
+
+  function restart() {
+    current = 0;
+    running = true;
+    progressEl.style.width = '0%';
+    startSlide(0);
+    requestAnimationFrame(tick);
+  }
+
+  // Replay button
+  document.getElementById('replay-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    paused = false;
+    pauseBtn.textContent = 'Pause';
+    restart();
+  });
+
+  // Pause/Resume button
+  pauseBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (paused) {
+      paused = false;
+      pauseBtn.textContent = 'Pause';
+      slideStart = Date.now() - pausedElapsed;
+      requestAnimationFrame(tick);
+    } else {
+      paused = true;
+      pausedElapsed = Date.now() - slideStart;
+      pauseBtn.textContent = 'Resume';
+    }
+  });
+
+  // Contact overlay
+  var overlay = document.getElementById('contact-overlay');
+  document.getElementById('contact-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    overlay.classList.add('open');
+  });
+  document.getElementById('contact-close').addEventListener('click', function(e){
+    e.stopPropagation();
+    overlay.classList.remove('open');
+  });
+  overlay.addEventListener('click', function(e){
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+
+  // Go
+  startSlide(0);
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
