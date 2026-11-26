@@ -1,0 +1,106 @@
+{
+ "version": "guides-v1-0",
+ "line": {
+  "title": "Place the 6thSTAR line under your review stars",
+  "steps": [
+   {
+    "say": "In Shopify, click <b>Online Store</b>.",
+    "img": "line-1.png",
+    "alt": "Shopify admin, left panel, Online Store outlined",
+    "label": ""
+   },
+   {
+    "say": "On your live theme, click <b>Edit theme</b>.",
+    "img": "line-2.png",
+    "alt": "The live theme card, Edit theme outlined",
+    "label": ""
+   },
+   {
+    "say": "At the top, open the page menu and choose <b>Products › Default product</b>.",
+    "img": "line-3.png",
+    "alt": "The theme editor's page menu, Products, Default product outlined",
+    "label": ""
+   },
+   {
+    "say": "In the left panel, find <b>Review stars</b>.",
+    "img": "line-4.png",
+    "alt": "The theme editor's left panel, Review stars outlined",
+    "label": ""
+   },
+   {
+    "say": "Point just below <b>Review stars</b>. Click the <b>+</b> that appears.",
+    "img": "line-5.png",
+    "alt": "The + just below Review stars, outlined",
+    "label": ""
+   },
+   {
+    "say": "Click <b>Apps</b>, then <b>6thSTAR line</b>.",
+    "img": "line-6.png",
+    "alt": "The add-block panel, the Apps tab and 6thSTAR line outlined",
+    "label": ""
+   },
+   {
+    "say": "Check that the 6thSTAR line sits right under your stars. Click <b>Save</b>.",
+    "img": "line-7.png",
+    "alt": "The preview with the 6thSTAR line under the stars, and Save, outlined",
+    "label": ""
+   },
+   {
+    "say": "Done. Back in 6thSTAR, this step shows ✓ and <b>Turn on</b> is ready.",
+    "img": "line-8.png",
+    "alt": "The 6thSTAR Install step, Place the 6thSTAR line under your review stars, showing Done",
+    "label": ""
+   }
+  ],
+  "help": [
+   "Don't see Review stars? Your reviews app may need to add them first. Write to <a href=\"mailto:6thstarsupport@gmail.com\">6thstarsupport@gmail.com</a>.",
+   "Theme without app blocks? There's nothing to do. Your star still shows.",
+   "Moved it later? 6thSTAR will tell you, and this guide will open again."
+  ]
+ },
+ "ai": {
+  "title": "Share with AI shoppers",
+  "steps": [
+   {
+    "say": "Before you start: your store must be open to shoppers (no password) and qualify for Shopify Catalog. <a href=\"https://help.shopify.com/en/manual/online-sales-channels/shopify-catalog\" target=\"_blank\" rel=\"noopener\">Check in Shopify</a>",
+    "img": "ai-0.png",
+    "alt": "Shopify Catalog's status in Shopify, here Ineligible, outlined",
+    "label": "Before you start"
+   },
+   {
+    "say": "In Shopify, click <b>Agentic</b>. Under Sources, click Shopify Catalog's status.",
+    "img": "ai-1.png",
+    "alt": "Shopify admin, Agentic and Shopify Catalog's status outlined",
+    "label": ""
+   },
+   {
+    "say": "Click <b>Review your product data</b>. This opens Channel mapping.",
+    "img": "ai-2.png",
+    "alt": "Shopify Catalog's status panel, Review your product data outlined",
+    "label": ""
+   },
+   {
+    "say": "Click into <b>Product description</b>, then <b>⊕</b>. Under Product metafields, choose <b>6thSTAR agent description</b>.",
+    "img": "ai-3.png",
+    "alt": "The Product description source list, 6thSTAR agent description outlined",
+    "label": ""
+   },
+   {
+    "say": "Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.",
+    "img": "ai-4.png",
+    "alt": "Channel mapping, the Product description tag and Save outlined",
+    "label": ""
+   },
+   {
+    "say": "Done. Back in 6thSTAR, the AI shoppers card shows a green dot beside <b>Through Shopify</b>.",
+    "img": "ai-5.png",
+    "alt": "The 6thSTAR AI shoppers card, Through Shopify with a green dot, outlined",
+    "label": ""
+   }
+  ],
+  "help": [
+   "Shopify sends this to AI shoppers such as ChatGPT and Copilot. When each one reads it is up to them.",
+   "To undo it, set Product description back to your own description."
+  ]
+ }
+}
