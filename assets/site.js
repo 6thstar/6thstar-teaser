@@ -7,6 +7,7 @@ const SITE = {
   LISTING_URL: "",              /* the Shopify App Store listing, once approved */
   BETA_URL: "/beta/",
   SUPPORT: "6thstarsupport@gmail.com",
+  BETA_ENDPOINT: "https://sixthstar-app-y2dab.ondigitalocean.app/beta-request",   /* the 6thSTAR app keeps and emails each request */
 };
 const INSTALL_HREF = (SITE.LISTING_APPROVED && SITE.LISTING_URL) ? SITE.LISTING_URL : SITE.BETA_URL;
 document.querySelectorAll("[data-install]").forEach(a => { a.href = INSTALL_HREF; });
@@ -68,23 +69,26 @@ document.querySelectorAll(".wiz").forEach(wiz => {
   draw();
 });
 
-/* ── Beta request: until the site has its own sender, the form opens a filled-in email to support ── */
+/* ── Beta request: posted to the 6thSTAR app, which keeps it and emails it to support (CC_MD_Website_Fixes_v1_0 §1).
+      Plain text JSON, so the browser sends it straight away; no cookie. ── */
 const form = document.querySelector("form.beta");
 if (form) {
-  form.addEventListener("submit", e => {
+  const errBox = form.querySelector(".formerr"), btn = form.querySelector("button[type=submit]");
+  const fail = msg => { errBox.textContent = msg; errBox.hidden = false; btn.disabled = false; btn.textContent = "Send request"; };
+  form.addEventListener("submit", async e => {
     e.preventDefault();
     if (!form.reportValidity()) return;
-    const f = new FormData(form);
-    const body = [
-      "Name: " + f.get("name"),
-      "Email: " + f.get("email"),
-      "Store URL: " + f.get("store"),
-      "Orders a month (roughly): " + f.get("orders"),
-      "Selling for: " + f.get("selling"),
-    ].join("\n");
-    location.href = "mailto:" + SITE.SUPPORT + "?subject=" + encodeURIComponent("6thSTAR beta request") + "&body=" + encodeURIComponent(body);
-    form.hidden = true;
-    document.querySelector(".thanks").classList.add("show");
+    errBox.hidden = true; btn.disabled = true; btn.textContent = "Sending…";
+    const body = JSON.stringify(Object.fromEntries(new FormData(form)));
+    try {
+      const r = await fetch(SITE.BETA_ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain" }, body });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) return fail(j.error || ("We couldn't send your request just now. Please write to " + SITE.SUPPORT + "."));
+      form.hidden = true;
+      document.querySelector(".thanks").classList.add("show");
+    } catch (x) {
+      fail("We couldn't send your request just now. Please write to " + SITE.SUPPORT + ".");
+    }
   });
 }
 

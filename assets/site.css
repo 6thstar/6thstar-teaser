@@ -161,3 +161,7 @@ form.beta .opt{font-weight:300;color:var(--muted);font-size:14px}
 .wiz-shot a{display:block;width:100%}
 .wiz-shot img{width:100%;height:auto;max-height:560px;object-fit:contain}
 .wiz-zoom{font-size:13px;color:var(--muted);padding:6px 24px 0;text-align:right}
+
+/* The beta form: the hidden field a person never sees, and a plain error line */
+form.beta .trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.formerr{color:#b42318;font-size:15px}
