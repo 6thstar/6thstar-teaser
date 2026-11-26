@@ -155,3 +155,9 @@ form.beta .opt{font-weight:300;color:var(--muted);font-size:14px}
   .line-pop{left:4%;right:4%;top:44%;font-size:15px}
 }
 @media (max-width:700px){.shot .tag{top:10px;right:10px;bottom:auto;left:auto}}
+
+/* Wizard shots keep their own shape; tap one to see it full size */
+.wiz-shot{aspect-ratio:auto;min-height:180px;background:#fff}
+.wiz-shot a{display:block;width:100%}
+.wiz-shot img{width:100%;height:auto;max-height:560px;object-fit:contain}
+.wiz-zoom{font-size:13px;color:var(--muted);padding:6px 24px 0;text-align:right}
