@@ -119,7 +119,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 </div></section>
 
 <section class="beat narrow" id="why"><div class="in">
-  <h2>Why it works.</h2>
+  <h2>Close the gap, and trust follows.</h2>
   <p class="lead">Disappointment is the gap between what was expected and what arrived. Close the gap before the sale, and there's less to send back.</p>
   <p class="lead">Be right, product after product, and trust follows, from shoppers and from the AI shoppers that choose for them.</p>
 </div></section>
@@ -134,7 +134,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     <li>It only adds; it never changes your words.</li>
     <li>Your praise words, in your brand's voice.</li>
     <li>You choose the channels.</li>
-    <li>Uninstall clears everything.</li>
+    <li>Uninstall from 6thSTAR's Settings clears everything it added.</li>
   </ul>
   <p class="lead">Try it first: <a href="/demo/">the hands-on demo</a>.</p>
   <p class="note">*Writing your lines depends on how many products you have.</p>
@@ -158,7 +158,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     <details><summary>How long until my lines are ready?</summary>
       <p>Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live.</p></details>
     <details><summary>What happens if I uninstall?</summary>
-      <p>Uninstall clears everything 6thSTAR added to your store.</p></details>
+      <p>Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them.</p></details>
     <details><summary>What does the beta involve?</summary>
       <p>A small group of Shopify stores install 6thSTAR before it's listed. We set it up with you on a call, you read your lines before anything goes live, and you tell us what you see.</p></details>
     <details><summary>Who do I contact?</summary>
@@ -187,12 +187,12 @@ BETA = head("Install 6thSTAR — beta request", "Ask to install 6thSTAR on your 
         <option value="">Choose one</option>
         <option>Under a year</option><option>1 to 3 years</option><option>Over 3 years</option>
       </select></label>
+    <label class="trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
     <div><button class="btn lg" type="submit">Send request</button></div>
-    <p class="note">This opens an email to {SUPPORT} with your answers filled in. Press Send in your email app.</p>
+    <p class="formerr" role="alert" hidden></p>
   </form>
   <div class="thanks" role="status">
     <h2 style="font-size:32px">Thank you. We'll write to you within two business days.</h2>
-    <p class="note">If your email app didn't open, write to <a href="mailto:{SUPPORT}">{SUPPORT}</a>.</p>
   </div>
 </div>
 """ + FOOT
@@ -238,8 +238,8 @@ W2 = [
      G + "ai-0.png", "Shopify Catalog's status in Shopify, here Ineligible, outlined", "", "Before you start"),
     ("In Shopify, click <b>Agentic</b>. Under Sources, click Shopify Catalog's status.", G + "ai-1.png", "Shopify admin, Agentic and Shopify Catalog's status outlined", "", ""),
     ("Click <b>Review your product data</b>. This opens Channel mapping.", G + "ai-2.png", "Shopify Catalog's status panel, Review your product data outlined", "", ""),
-    ("Click into <b>Product description</b>, then <b>⊕</b>. Under Product metafields, choose <b>6thSTAR agent description</b>.", G + "ai-3.png", "The Product description source list, 6thSTAR agent description outlined", "", ""),
-    ("Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.", G + "ai-4.png", "Channel mapping with only 6thSTAR agent description left, and Save, outlined", "", ""),
+    ("Click into <b>Product description</b>, then <b>⊕</b>, to see its sources. <b>6thSTAR agent description</b> is under Product metafields.", G + "ai-3.png", "The Product description source list, 6thSTAR agent description outlined", "", ""),
+    ("Take out <b>Product description</b> first, then add <b>6thSTAR agent description</b>. Click <b>Save</b>.", G + "ai-4.png", "Channel mapping with only 6thSTAR agent description left, and Save, outlined", "", ""),
     ("Done. Back in 6thSTAR, the AI shoppers card shows a green dot beside <b>Through Shopify</b>.", G + "ai-5.png", "The 6thSTAR AI shoppers card, Through Shopify with a green dot, outlined", "", ""),
 ]
 W2_HELP = [

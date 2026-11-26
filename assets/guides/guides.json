@@ -80,13 +80,13 @@
     "label": ""
    },
    {
-    "say": "Click into <b>Product description</b>, then <b>⊕</b>. Under Product metafields, choose <b>6thSTAR agent description</b>.",
+    "say": "Click into <b>Product description</b>, then <b>⊕</b>, to see its sources. <b>6thSTAR agent description</b> is under Product metafields.",
     "img": "ai-3.png",
     "alt": "The Product description source list, 6thSTAR agent description outlined",
     "label": ""
    },
    {
-    "say": "Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.",
+    "say": "Take out <b>Product description</b> first, then add <b>6thSTAR agent description</b>. Click <b>Save</b>.",
     "img": "ai-4.png",
     "alt": "Channel mapping with only 6thSTAR agent description left, and Save, outlined",
     "label": ""
