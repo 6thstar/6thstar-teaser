@@ -55,7 +55,7 @@ document.querySelectorAll(".wiz").forEach(wiz => {
   const draw = () => {
     const s = steps[i];
     shot.replaceChildren();
-    if (s.img) { const im = new Image(); im.src = s.img; im.alt = s.alt; shot.appendChild(im); }
+    if (s.img) { const a = document.createElement("a"); a.href = s.img; a.target = "_blank"; a.rel = "noopener"; a.title = "Open full size"; const im = new Image(); im.src = s.img; im.alt = s.alt; a.appendChild(im); shot.appendChild(a); }
     else { const d = document.createElement("div"); d.className = "ph"; d.textContent = s.ph || "Screenshot to come"; shot.appendChild(d); }
     say.innerHTML = s.say;
     const n = steps.slice(0, i + 1).filter(x => !x.label).length;

@@ -208,6 +208,7 @@ def wizard(id_, title, steps, help_):
     <div class="wiz-head"><h2>{title}</h2><p class="wiz-count"></p></div>
 {t}
     <div class="wiz-shot"></div>
+    <p class="wiz-zoom">Click the picture to see it full size.</p>
     <p class="wiz-say" aria-live="polite"></p>
     <div class="wiz-nav"><button class="back" type="button">Back</button><button class="next" type="button">Next</button></div>
     <div class="wiz-help">
@@ -215,16 +216,16 @@ def wizard(id_, title, steps, help_):
     </div>
   </section>"""
 
-PH = "Screenshot to come: "
+G = "/assets/guides/"
 W1 = [
-    ("In Shopify, click <b>Online Store</b>, then <b>Themes</b>.", "", "", PH + "Admin left panel, Online Store › Themes", ""),
-    ("On your live theme, click <b>Customize</b>.", "", "", PH + "The theme card's Customize button", ""),
-    ("At the top, open the page menu and choose <b>Products › Default product</b>.", "", "", PH + "The theme editor's page picker", ""),
-    ("In the left panel, find <b>Review stars</b>.", "", "", PH + "Product information open, Review stars outlined", ""),
-    ("Point just below <b>Review stars</b>. Click the <b>+</b> that appears.", "", "", PH + "The + below Review stars", ""),
-    ("Click <b>Apps</b>, then <b>6thSTAR line</b>.", "", "", PH + "The add-block panel, Apps tab", ""),
-    ("Check that the 6thSTAR line sits right under your stars. Click <b>Save</b>.", "", "", PH + "The preview with the line under the stars; Save outlined", ""),
-    ("Done. Back in 6thSTAR, this step shows ✓ and <b>Turn on</b> is ready.", "", "", PH + "The app's step showing done", ""),
+    ("In Shopify, click <b>Online Store</b>.", G + "line-1.png", "Shopify admin, left panel, Online Store outlined", "", ""),
+    ("On your live theme, click <b>Edit theme</b>.", G + "line-2.png", "The live theme card, Edit theme outlined", "", ""),
+    ("At the top, open the page menu and choose <b>Products › Default product</b>.", G + "line-3.png", "The theme editor's page menu, Products, Default product outlined", "", ""),
+    ("In the left panel, find <b>Review stars</b>.", G + "line-4.png", "The theme editor's left panel, Review stars outlined", "", ""),
+    ("Point just below <b>Review stars</b>. Click the <b>+</b> that appears.", G + "line-5.png", "The + just below Review stars, outlined", "", ""),
+    ("Click <b>Apps</b>, then <b>6thSTAR line</b>.", G + "line-6.png", "The add-block panel, the Apps tab and 6thSTAR line outlined", "", ""),
+    ("Check that the 6thSTAR line sits right under your stars. Click <b>Save</b>.", G + "line-7.png", "The preview with the 6thSTAR line under the stars, and Save, outlined", "", ""),
+    ("Done. Back in 6thSTAR, this step shows ✓ and <b>Turn on</b> is ready.", G + "line-8.png", "The 6thSTAR Install step, Place the 6thSTAR line under your review stars, showing Done", "", ""),
 ]
 W1_HELP = [
     f'Don\'t see Review stars? Your reviews app may need to add them first. Write to <a href="mailto:{SUPPORT}">{SUPPORT}</a>.',
@@ -234,12 +235,12 @@ W1_HELP = [
 W2 = [
     ("Before you start: your store must be open to shoppers (no password) and qualify for Shopify Catalog. "
      '<a href="https://help.shopify.com/en/manual/online-sales-channels/shopify-catalog" target="_blank" rel="noopener">Check in Shopify</a>',
-     "", "", PH + "Shopify Catalog eligibility", "Before you start"),
-    ("In Shopify, open <b>Shopify Catalog</b>.", "", "", PH + "Its place in the admin", ""),
-    ("Click <b>Channel mapping</b>.", "", "", PH + "The Channel mapping page", ""),
-    ("Find <b>Product description</b>. Choose <b>6thSTAR agent description</b>.", "", "", PH + "The dropdown with the 6thSTAR field outlined", ""),
-    ("Click <b>Save</b>.", "", "", PH + "Save outlined", ""),
-    ("Done. Back in 6thSTAR, the AI shoppers card shows <b>Through Shopify: working</b>.", "", "", PH + "The card's line", ""),
+     G + "ai-0.png", "Shopify Catalog's status in Shopify, here Ineligible, outlined", "", "Before you start"),
+    ("In Shopify, click <b>Agentic</b>. Under Sources, click Shopify Catalog's status.", G + "ai-1.png", "Shopify admin, Agentic and Shopify Catalog's status outlined", "", ""),
+    ("Click <b>Review your product data</b>. This opens Channel mapping.", G + "ai-2.png", "Shopify Catalog's status panel, Review your product data outlined", "", ""),
+    ("Click into <b>Product description</b>, then <b>⊕</b>. Under Product metafields, choose <b>6thSTAR agent description</b>.", G + "ai-3.png", "The Product description source list, 6thSTAR agent description outlined", "", ""),
+    ("Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.", G + "ai-4.png", "Channel mapping, the Product description tag and Save outlined", "", ""),
+    ("Done. Back in 6thSTAR, the AI shoppers card shows a green dot beside <b>Through Shopify</b>.", G + "ai-5.png", "The 6thSTAR AI shoppers card, Through Shopify with a green dot, outlined", "", ""),
 ]
 W2_HELP = [
     "Shopify sends this to AI shoppers such as ChatGPT and Copilot. When each one reads it is up to them.",
