@@ -287,3 +287,15 @@ for path, html in PAGES.items():
 # 404 page for the static site
 (ROOT / "404.html").write_text(placeholder("6thSTAR", "Page not found.", "Page not found",
     '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>'))
+
+# The same guides, for the 6thSTAR app (CC_MD v1.2: "Build them once, with the same screens and words in both places").
+# The app copies assets/guides/guides.json and the shots into shopify_poc/mvp/guides/.
+import json
+def _g(steps, help_):
+    return {"steps": [{"say": say, "img": img.rsplit("/", 1)[-1], "alt": alt, "label": label} for (say, img, alt, ph, label) in steps], "help": help_}
+(ROOT / "assets" / "guides" / "guides.json").write_text(json.dumps({
+    "version": "guides-v1-0",
+    "line": dict(title="Place the 6thSTAR line under your review stars", **_g(W1, W1_HELP)),
+    "ai": dict(title="Share with AI shoppers", **_g(W2, W2_HELP)),
+}, ensure_ascii=False, indent=1))
+print("wrote assets/guides/guides.json")
