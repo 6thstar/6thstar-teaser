@@ -1,0 +1,157 @@
+/* 6thSTAR site v1.1 — white, plain, one idea per screen. Roboto (self-hosted, no outside requests). */
+@font-face{font-family:"Roboto";src:url("/assets/fonts/roboto-300-500.woff") format("woff");font-weight:300 500;font-display:swap}
+:root{
+  color-scheme:light;
+  --ink:#000; --ink-2:#3a3a3a; --muted:#6b6b6b; --rule:#e8e8e8; --sunk:#f6f6f4;
+  --gold:#ff9900; --gold-ink:#a86200; --line-bg:#fff8ec; --line-edge:#d9c39b;
+  --btn:#000; --btn-ink:#fff;
+  --max:1080px; --gutter:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font-family:"Roboto","Helvetica Neue",Arial,sans-serif;font-weight:300;line-height:1.55;font-size:18px}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* Header: the mark, and the one action, always in reach */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rule)}
+.top .in{max-width:var(--max);margin:0 auto;padding:10px var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand img{width:44px;height:44px}
+.top nav{display:flex;align-items:center;gap:22px;font-size:15px}
+.top nav a.txt{text-decoration:none;color:var(--ink-2)}
+.top nav a.txt:hover{color:var(--ink)}
+@media (max-width:560px){.top nav a.txt{display:none}}
+
+.btn{display:inline-block;background:var(--btn);color:var(--btn-ink);text-decoration:none;font-weight:400;font-size:16px;letter-spacing:.01em;padding:12px 24px;border-radius:999px;border:0;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#222}
+.btn.sm{font-size:14px;padding:9px 18px}
+.btn.lg{font-size:18px;padding:15px 32px}
+
+/* Beats: one idea per screen */
+.beat{min-height:86vh;display:flex;align-items:center;padding:96px var(--gutter);border-bottom:1px solid var(--rule)}
+.beat:last-of-type{border-bottom:0}
+.beat .in{max-width:var(--max);margin:0 auto;width:100%}
+.beat.narrow .in{max-width:760px}
+.center{text-align:center}
+h1,h2{font-weight:300;letter-spacing:-.015em;line-height:1.12}
+h1{font-size:clamp(40px,6.4vw,76px)}
+h2{font-size:clamp(32px,4.8vw,56px)}
+.lead{font-size:clamp(19px,2vw,23px);color:#5f5f5f;margin-top:22px;max-width:680px}
+.center .lead{margin-left:auto;margin-right:auto}
+.lead+.lead{margin-top:14px}
+.speaks{font-size:clamp(24px,3vw,34px);font-weight:400;margin-top:36px}
+.cta{margin-top:36px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.center .cta{justify-content:center}
+.note{font-size:14px;color:var(--muted);margin-top:18px}
+.hero .mark{width:min(150px,34vw);margin:0 auto 34px}
+
+/* Films: never play by themselves; a still with a label until clicked */
+.film{position:relative;margin:56px auto 0;max-width:760px;border-radius:14px;overflow:hidden;background:var(--sunk);box-shadow:0 1px 0 var(--rule),0 18px 50px rgba(0,0,0,.07);cursor:pointer}
+.film img,.film video{width:100%;aspect-ratio:16/9;object-fit:cover}
+.film .play{position:absolute;left:18px;bottom:16px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.94);color:var(--ink);border:0;border-radius:999px;padding:9px 16px 9px 12px;font:400 15px "Roboto",sans-serif;cursor:pointer}
+.film .play::before{content:"";width:0;height:0;border-left:11px solid var(--ink);border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:4px}
+.film.soon{cursor:default}
+.film.soon .play{cursor:default}
+.film.soon .play::before{display:none}
+
+/* The product page images (6thstar-sample, made data) */
+.shot{position:relative;margin:56px auto 0;max-width:980px;border-radius:14px;overflow:hidden;border:1px solid var(--rule);background:#fff}
+.shot img{width:100%}
+.tag{position:absolute;top:12px;right:12px;background:rgba(30,30,30,.82);color:#fff;font-size:12px;padding:5px 11px;border-radius:999px;letter-spacing:.01em;z-index:3}
+/* Beat 4: everything dimmed except the space under the stars */
+.spot-hole{position:absolute;left:59.0%;top:42.4%;width:38.6%;height:6.6%;border-radius:8px;box-shadow:0 0 0 2000px rgba(255,255,255,.80),0 0 0 2003px rgba(0,0,0,.04);z-index:2;pointer-events:none}
+/* Beat 5: the star opens the line on hover, focus or tap */
+.star-hit{position:absolute;left:59.3%;top:42.9%;width:2.6%;aspect-ratio:1;border-radius:50%;background:transparent;border:0;cursor:pointer;z-index:4}
+.star-hit::after{content:"";position:absolute;inset:-60%;border-radius:50%;border:2px solid var(--gold);opacity:.0;animation:ring 2.4s ease-out infinite}
+@keyframes ring{0%{transform:scale(.5);opacity:.9}70%{opacity:0}100%{transform:scale(1.2);opacity:0}}
+.line-pop{position:absolute;left:59.6%;top:50%;width:min(37em,39%);background:var(--line-bg);border:1px solid var(--line-edge);border-radius:12px;padding:14px 18px;font-size:clamp(13px,1.45vw,17px);font-weight:400;color:#1d1d1d;box-shadow:0 8px 28px rgba(0,0,0,.10);z-index:5;opacity:0;transform:translateY(-4px);transition:opacity .18s,transform .18s;pointer-events:none}
+.shot.open .line-pop{opacity:1;transform:none}
+.shot.open .star-hit::after{animation:none}
+.hint{font-size:14px;color:var(--muted);margin-top:14px;text-align:center}
+@media (max-width:700px){
+  .line-pop{left:6%;right:6%;width:auto;top:58%}
+}
+@media (prefers-reduced-motion:reduce){.star-hit::after{animation:none;opacity:.8;transform:none;inset:-40%}}
+
+/* Lists of short plain points */
+.points{list-style:none;margin-top:26px;max-width:680px}
+.center .points{margin-left:auto;margin-right:auto}
+.points li{padding:12px 0;border-top:1px solid var(--rule);color:var(--ink-2);font-size:19px}
+.points li:last-child{border-bottom:1px solid var(--rule)}
+.links{margin-top:22px;display:flex;gap:24px;flex-wrap:wrap}
+.center .links{justify-content:center}
+.links a{color:var(--ink);text-underline-offset:4px;text-decoration-color:var(--gold);text-decoration-thickness:1.5px}
+
+/* Questions */
+.faq{max-width:760px;margin:64px auto 0;text-align:left}
+.faq h3{font-weight:400;font-size:24px;margin-bottom:12px}
+.faq details{border-top:1px solid var(--rule)}
+.faq details:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 34px 18px 0;font-size:19px;font-weight:400;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:14px;font-size:24px;font-weight:300;color:var(--muted)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 20px;color:var(--ink-2)}
+
+/* Footer */
+.foot{border-top:1px solid var(--rule);padding:36px var(--gutter) 48px}
+.foot .in{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:15px;color:var(--ink-2)}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+.foot nav a{text-decoration:none}
+.foot nav a:hover{text-decoration:underline}
+.foot img{width:120px;height:120px}
+
+/* Plain pages (/beta, /terms, /privacy, /demo, /setup) */
+.page{max-width:760px;margin:0 auto;padding:80px var(--gutter) 96px}
+.page h1{font-size:clamp(36px,5vw,56px)}
+.page .lead{max-width:none}
+form.beta{margin-top:40px;display:grid;gap:22px}
+form.beta label{display:grid;gap:8px;font-size:16px;font-weight:400}
+form.beta input,form.beta select{font:300 18px "Roboto",sans-serif;padding:13px 14px;border:1px solid #cfcfcf;border-radius:10px;background:#fff;color:var(--ink);width:100%}
+form.beta input:focus,form.beta select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+form.beta .opt{font-weight:300;color:var(--muted);font-size:14px}
+.thanks{display:none;margin-top:40px;padding:28px;border-radius:14px;background:var(--sunk)}
+.thanks.show{display:block}
+
+/* Wizards */
+.wiz{margin-top:44px;border:1px solid var(--rule);border-radius:16px;overflow:hidden;background:#fff}
+.wiz + .wiz{margin-top:72px}
+.wiz-head{padding:22px 24px 0}
+.wiz-head h2{font-size:clamp(24px,3vw,32px)}
+.wiz-count{font-size:14px;color:var(--muted);margin-top:6px}
+.wiz-shot{margin:18px 24px 0;border:1px solid var(--rule);border-radius:10px;background:var(--sunk);overflow:hidden;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.wiz-shot img{width:100%;height:100%;object-fit:contain;background:#fff}
+.wiz-shot .ph{font-size:14px;color:var(--muted);padding:24px;text-align:center}
+.wiz-say{padding:20px 24px 4px;font-size:clamp(19px,2.2vw,22px);font-weight:400;min-height:3.2em}
+.wiz-nav{display:flex;justify-content:space-between;gap:12px;padding:12px 24px 24px}
+.wiz-nav button{font:400 16px "Roboto",sans-serif;padding:11px 22px;border-radius:999px;border:1px solid #cfcfcf;background:#fff;color:var(--ink);cursor:pointer}
+.wiz-nav button.next{background:var(--btn);color:#fff;border-color:var(--btn)}
+.wiz-nav button[disabled]{opacity:.35;cursor:default}
+.wiz-help{padding:18px 24px 24px;border-top:1px solid var(--rule);background:#fcfcfb}
+.wiz-help p{font-size:15px;color:var(--ink-2);margin-top:6px}
+.wiz-help p:first-child{margin-top:0}
+.wiz-help a{text-underline-offset:3px}
+
+/* Hero: the words and the button lead; the spot sits beside them as a still (under them on a phone) */
+.hero-grid{display:grid;grid-template-columns:1fr;gap:8px;align-items:center}
+.hero .film{margin-top:48px}
+@media (min-width:960px){
+  .hero-grid{grid-template-columns:1.05fr 1fr;gap:56px}
+  .hero .film{margin:0}
+}
+@media (min-width:701px){.line-pop{width:auto;max-width:41%;white-space:nowrap;font-size:clamp(12px,1.22vw,15px)}}
+.spot-hole{box-shadow:0 0 0 2000px rgba(255,255,255,.86);outline:1.5px solid var(--gold);outline-offset:2px}
+
+/* Film label sits under the still, never over its words */
+.film .play{position:static;margin:0;border-radius:0;width:100%;justify-content:flex-start;padding:13px 16px;background:#fff;border-top:1px solid var(--rule)}
+/* The sample-store tag sits bottom-left, clear of the product title */
+.shot .tag{top:auto;bottom:12px;right:auto;left:12px}
+/* On a phone, the product page is cropped to the title, price, stars and the 6thSTAR, so it can be read */
+@media (max-width:700px){
+  .spot-hole{left:3.6%;top:35.2%;width:90%;height:7.6%}
+  .star-hit{left:5.2%;top:35.6%;width:8.5%}
+  .line-pop{left:4%;right:4%;top:44%;font-size:15px}
+}
+@media (max-width:700px){.shot .tag{top:10px;right:10px;bottom:auto;left:auto}}

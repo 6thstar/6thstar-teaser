@@ -1,363 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expectation Alignment Engine&trade;</title>
-<meta name="description" content="Expectation Alignment Engine &mdash; Behavioral Science. Productized. Patent Pending.">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fff;color:#1a1a1a;overflow:hidden;height:100vh;width:100vw}
-
-.slide{
-  position:fixed;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:#fff;
-  opacity:0;pointer-events:none;
-  z-index:1;
-}
-.slide.active{opacity:1;pointer-events:auto;z-index:10}
-
-.slide-phrase{
-  font-size:clamp(16px,2.6vw,36px);
-  font-weight:200;
-  letter-spacing:0.05em;
-  line-height:1.4;
-  text-align:center;
-  white-space:nowrap;
-  padding:0 24px;
-  margin-bottom:12px;
-  opacity:0;
-  transition:opacity 1s ease;
-}
-.slide-phrase.show{opacity:1}
-
-.slide-phrase-sub{
-  font-size:clamp(16px,2.6vw,36px);
-  font-weight:200;
-  letter-spacing:0.05em;
-  line-height:1.4;
-  text-align:center;
-  white-space:nowrap;
-  padding:0 24px;
-  margin-bottom:36px;
-  color:#1a1a1a;
-  opacity:0;
-  transition:opacity 1s ease;
-}
-.slide-phrase-sub.show{opacity:1}
-
-.slide-image{
-  max-width:min(85vw,900px);
-  max-height:55vh;
-  object-fit:contain;
-  opacity:0;
-  transition:opacity 1s ease;
-}
-/* Slide 1 & 6: 6thSTAR mark — smaller, centered */
-.slide-image.mark{
-  max-width:min(40vw,380px);
-  max-height:40vh;
-}
-.slide-image.show{opacity:1}
-
-/* Fade-out */
-.slide.fading-out{
-  transition:opacity 0.6s ease;
-  opacity:0;
-}
-
-/* Progress bar */
-.progress{position:fixed;bottom:0;left:0;height:2px;background:#F5A623;z-index:100;transition:width 0.1s linear}
-
-/* Persistent controls — bottom corners, always visible */
-.ctrl-replay{
-  position:fixed;bottom:18px;left:24px;z-index:200;
-  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
-  color:#999;background:none;border:1px solid #ddd;
-  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
-}
-.ctrl-replay:hover{color:#1a1a1a;border-color:#999}
-
-.ctrl-contact{
-  position:fixed;bottom:18px;right:24px;z-index:200;
-  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
-  color:#999;background:none;border:1px solid #ddd;
-  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
-  text-decoration:none;
-}
-.ctrl-contact:hover{color:#1a1a1a;border-color:#999}
-
-.ctrl-pause{
-  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:200;
-  font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.12em;
-  color:#999;background:none;border:1px solid #ddd;
-  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
-}
-.ctrl-pause:hover{color:#1a1a1a;border-color:#999}
-
-/* Contact overlay */
-.contact-overlay{
-  position:fixed;inset:0;background:rgba(255,255,255,0.96);
-  display:flex;align-items:center;justify-content:center;
-  z-index:500;opacity:0;pointer-events:none;transition:opacity 0.3s ease;
-}
-.contact-overlay.open{opacity:1;pointer-events:auto}
-.contact-card{text-align:center;max-width:400px;padding:40px}
-.contact-card h2{font-size:20px;font-weight:300;letter-spacing:0.06em;margin-bottom:6px}
-.contact-card .company{font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#888;margin-bottom:28px}
-.contact-card .detail{font-size:13px;font-weight:300;line-height:2;color:#444}
-.contact-card .detail a{color:#444;text-decoration:none;border-bottom:1px solid #ddd}
-.contact-card .detail a:hover{color:#1a1a1a;border-color:#999}
-.contact-close{
-  margin-top:28px;font-size:9px;font-weight:500;text-transform:uppercase;
-  letter-spacing:0.12em;color:#999;background:none;border:1px solid #ddd;
-  padding:6px 14px;cursor:pointer;transition:color 0.2s,border-color 0.2s;
-}
-.contact-close:hover{color:#1a1a1a;border-color:#999}
-
-/* Persistent tagline — top of page, above headline */
-.persistent-tagline{
-  position:fixed;top:20px;left:50%;transform:translateX(-50%);
-  font-size:clamp(16px,2.6vw,36px);
-  font-weight:200;
-  letter-spacing:0.05em;
-  color:rgba(0,0,0,0.14);
-  z-index:15;
-  white-space:nowrap;
-  pointer-events:none;
-}
-
-/* Footer */
-.footer{
-  position:fixed;bottom:4px;left:50%;transform:translateX(-50%);
-  font-size:7px;text-transform:uppercase;letter-spacing:0.12em;color:#ccc;z-index:100;
-  white-space:nowrap;
-}
-
-/* ── Mobile ── */
-@media (max-width:768px){
-  .slide-phrase,.slide-phrase-sub{
-    font-size:clamp(12px,3.8vw,22px);
-    padding:0 16px;
-    margin-bottom:8px;
-  }
-  .slide-image{
-    max-width:90vw;
-    max-height:45vh;
-  }
-  .slide-image.mark{
-    max-width:50vw;
-    max-height:30vh;
-  }
-  .ctrl-replay,.ctrl-contact,.ctrl-pause{
-    bottom:14px;font-size:8px;padding:5px 10px;
-  }
-  .ctrl-replay{left:14px}
-  .ctrl-contact{right:14px}
-  .persistent-tagline{font-size:clamp(12px,3.8vw,22px)}
-  .footer{font-size:6px;letter-spacing:0.08em}
-  .contact-card{padding:24px}
-  .contact-card h2{font-size:18px}
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6thSTAR — Reduce Returns and Build Trust</title>
+<meta name="description" content="One short phrase, at the moment shoppers decide. A Shopify app.">
+<link rel="icon" href="/assets/6thstar-mark-96.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/roboto-300-500.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
+<header class="top"><div class="in">
+  <a class="brand" href="/" aria-label="6thSTAR home"><img src="/assets/6thstar-mark-96.png" alt="6thSTAR™" width="44" height="44"></a>
+  <nav>
+    <a class="txt" href="/setup/">Setup guides</a>
+    <a class="txt" href="/demo/">Demo</a>
+    <a class="btn sm" data-install href="/beta/">Install 6thSTAR</a>
+  </nav>
+</div></header>
+<main>
 
-<!-- Slide 1 -->
-<div class="slide" id="s0">
-  <div class="slide-phrase">$1.6 Trillion Global Cost of eCommerce Returns</div>
-  <div class="slide-phrase-sub">$675 Billion &ldquo;significantly not as described&rdquo;</div>
-  <img class="slide-image mark" src="teaser_images/slide_1.png" alt="">
-</div>
-
-<!-- Slide 2 -->
-<div class="slide" id="s1">
-  <div class="slide-phrase">Journey: Belief &rarr; Reliance &rarr; Expectation &rarr; Action</div>
-  <img class="slide-image" src="teaser_images/slide_2.png" alt="">
-</div>
-
-<!-- Slide 3 -->
-<div class="slide" id="s2">
-  <div class="slide-phrase">eaWHISPER&trade; &mdash; 7 words or less</div>
-  <img class="slide-image" src="teaser_images/slide_3.png" alt="">
-</div>
-
-<!-- Slide 4 -->
-<div class="slide" id="s3">
-  <div class="slide-phrase">Expectation Alignment Engine&trade;</div>
-  <div class="slide-phrase-sub">Today</div>
-  <img class="slide-image" src="teaser_images/slide_4.png" alt="">
-</div>
-
-<!-- Slide 5 -->
-<div class="slide" id="s4">
-  <div class="slide-phrase">Behavioral Science. Productized.</div>
-  <img class="slide-image" src="teaser_images/slide_5.png" alt="">
-</div>
-
-<!-- Slide 6 -->
-<div class="slide" id="s5">
-  <div class="slide-phrase">Expectation Alignment Engine&trade;</div>
-  <div class="slide-phrase-sub">Patent Pending</div>
-  <img class="slide-image mark" src="teaser_images/slide_6.png" alt="">
-</div>
-
-<!-- Persistent controls -->
-<button class="ctrl-replay" id="replay-btn">Replay</button>
-<button class="ctrl-pause" id="pause-btn">Pause</button>
-<button class="ctrl-contact" id="contact-btn">Contact</button>
-
-<!-- Contact overlay -->
-<div class="contact-overlay" id="contact-overlay">
-  <div class="contact-card">
-    <h2>Tracy Rosen</h2>
-    <div class="company">Rosen Group, LLC</div>
-    <div class="detail">
-      <a href="tel:+18023188131">802.318.8131</a><br>
-      <a href="mailto:trosen@rosengroup.us">trosen@rosengroup.us</a>
-    </div>
-    <button class="contact-close" id="contact-close">Close</button>
+<section class="beat hero" id="hook"><div class="in hero-grid">
+  <div class="hero-words">
+  <h1>Reduce Returns and Build Trust</h1>
+  <p class="lead">One short phrase, at the moment shoppers decide.</p>
+  <div class="cta"><a class="btn lg" data-install href="/beta/">Install 6thSTAR</a></div>
   </div>
-</div>
+  <div class="film" role="button" tabindex="0" aria-label="Watch the 30-second spot"
+       data-src="/assets/spot-v2-8.mp4" data-poster="/assets/spot-v2-8.jpg" data-vtt="/assets/spot-v2-8.vtt">
+    <img src="/assets/spot-v2-8.jpg" alt="The 30-second spot: the 6thSTAR mark, Reduce Returns and Build Trust" width="1280" height="720" loading="lazy">
+    <span class="play">Watch the 30-second spot</span>
+  </div>
+</div></section>
 
-<div class="persistent-tagline">helping reduce customer disappointment</div>
-<div class="progress" id="progress"></div>
-<div class="footer">Expectation Alignment Engine&trade; &middot; US Patent Pending &middot; &copy; Rosen Group, LLC 2026</div>
+<section class="beat narrow" id="surprise"><div class="in">
+  <h2>Most returns start with a surprise.</h2>
+  <p class="lead">The product was fine. The expectation wasn't. And by the time the box comes back, the margin is gone.</p>
+</div></section>
 
-<script>
-(function(){
-  var SLIDE_DURATION = 6000;    // 6s per slide
-  var PHRASE_START   = 0;       // line 1 fades in immediately
-  var SUB_START      = 1200;    // line 2 fades in at 1.2s
-  var IMAGE_START    = 2400;    // image fades in at 2.4s
-  var FADEOUT_START  = 5400;    // fade-out begins at 5.4s
+<section class="beat narrow" id="seconds"><div class="in">
+  <h2>Shoppers decide in seconds.</h2>
+  <p class="lead">The photo, the stars and the price form an impression before a word is read. It happens fast and automatically, in every visit.</p>
+  <p class="lead">That impression becomes the expectation. Whatever arrives is judged against it.</p>
+</div></section>
 
-  var slides = document.querySelectorAll('.slide');
-  var total  = slides.length;
-  var current = 0;
-  var slideStart = 0;
-  var running = true;
-  var paused = false;
-  var pausedElapsed = 0;
-  var progressEl = document.getElementById('progress');
-  var pauseBtn = document.getElementById('pause-btn');
+<section class="beat" id="moment"><div class="in">
+  <div class="center">
+    <h2>There's one moment that matters.</h2>
+    <p class="lead">It comes just before the shopper relies on that impression and decides. After it, the expectation has hardened. Before it, one true thing can still shape it.</p>
+    <p class="speaks">That's when 6thSTAR speaks.</p>
+  </div>
+  <figure class="shot" aria-label="MARLOW's product page, everything dimmed except the space under the stars">
+    <picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow.jpg" alt="A product page for MARLOW SUEDE TRAINER TAN, dimmed except the space just under the review stars" width="1250" height="700" loading="lazy"></picture>
+    <span class="spot-hole"></span>
+    <span class="tag">Sample store, made data</span>
+  </figure>
+</div></section>
 
-  function resetSlide(el) {
-    el.classList.remove('active','fading-out');
-    var p = el.querySelector('.slide-phrase');
-    var ps = el.querySelector('.slide-phrase-sub');
-    var img = el.querySelector('.slide-image');
-    if (p) p.classList.remove('show');
-    if (ps) ps.classList.remove('show');
-    if (img) img.classList.remove('show');
-  }
+<section class="beat" id="phrase"><div class="in">
+  <div class="center">
+    <h2>One short phrase, right under your review stars.</h2>
+  </div>
+  <figure class="shot" data-line>
+    <picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample, with the 6thSTAR under its review stars" width="1250" height="700" loading="lazy"></picture>
+    <button class="star-hit" type="button" aria-expanded="false" aria-label="Open the 6thSTAR line"></button>
+    <div class="line-pop" role="status">Great trainer… runs a little narrow across the foot…</div>
+    <span class="tag">Sample store, made data</span>
+  </figure>
+  <p class="hint">Point at the 6thSTAR under the stars (tap on a phone).</p>
+  <div class="center">
+    <p class="lead">It sits where every shopper's eye already goes.</p>
+    <p class="lead">First it confirms the choice. Then it tells the truth, the way a friend would.</p>
+  </div>
+</div></section>
 
-  function startSlide(n) {
-    for (var i = 0; i < total; i++) resetSlide(slides[i]);
-    slides[n].classList.add('active');
-    slideStart = Date.now();
-  }
+<section class="beat narrow" id="truth"><div class="in">
+  <h2>Your product's own truth.</h2>
+  <p class="lead">Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after.</p>
+  <p class="lead">Stars tell what buyers said. Returns tell what they kept. 6thSTAR finds the one thing shoppers don't expect, and says it in a few words.</p>
+</div></section>
 
-  function tick() {
-    if (!running || paused) return;
-    var elapsed = Date.now() - slideStart;
-    var el = slides[current];
-    var p = el.querySelector('.slide-phrase');
-    var ps = el.querySelector('.slide-phrase-sub');
-    var img = el.querySelector('.slide-image');
+<section class="beat narrow" id="every"><div class="in">
+  <h2>Every shopper. Every AI shopper.</h2>
+  <p class="lead">Shoppers see it on your product page.</p>
+  <p class="lead">AI shoppers read the same truth in your product record: through Shopify, to ChatGPT and Copilot, and on the open web beside the star.</p>
+  <p class="lead">Shared with every channel you choose.</p>
+</div></section>
 
-    if (elapsed >= PHRASE_START && p && !p.classList.contains('show')) {
-      p.classList.add('show');
-    }
-    if (elapsed >= SUB_START && ps && !ps.classList.contains('show')) {
-      ps.classList.add('show');
-    }
-    if (elapsed >= IMAGE_START && img && !img.classList.contains('show')) {
-      img.classList.add('show');
-    }
-    if (elapsed >= FADEOUT_START && !el.classList.contains('fading-out')) {
-      el.classList.add('fading-out');
-    }
+<section class="beat narrow" id="why"><div class="in">
+  <h2>Why it works.</h2>
+  <p class="lead">Disappointment is the gap between what was expected and what arrived. Close the gap before the sale, and there's less to send back.</p>
+  <p class="lead">Be right, product after product, and trust follows, from shoppers and from the AI shoppers that choose for them.</p>
+</div></section>
 
-    if (elapsed >= SLIDE_DURATION) {
-      current++;
-      if (current >= total) {
-        progressEl.style.width = '100%';
-        current = total - 1;
-        setTimeout(function(){
-          var last = slides[total - 1];
-          last.classList.remove('fading-out');
-          last.classList.add('active');
-          var p2 = last.querySelector('.slide-phrase');
-          var ps2 = last.querySelector('.slide-phrase-sub');
-          var img2 = last.querySelector('.slide-image');
-          if (p2) p2.classList.add('show');
-          if (ps2) ps2.classList.add('show');
-          if (img2) img2.classList.add('show');
-        }, 700);
-        running = false;
-        return;
-      }
-      startSlide(current);
-    }
+<section class="beat narrow" id="get"><div class="in">
+  <h2>Lower returns. More shopper trust. More AI-shopper trust.</h2>
+  <p class="lead">See it in Live Results: your returns before, forecast and actual, down to each product.</p>
+  <p class="speaks">About 20 minutes to install.*</p>
+  <p class="lead">Seven steps, each with a guide.</p>
+  <div class="links"><a href="/setup/#line">See how to place the line</a><a href="/setup/#ai">See the AI shoppers setup</a></div>
+  <ul class="points">
+    <li>It only adds; it never changes your words.</li>
+    <li>Your praise words, in your brand's voice.</li>
+    <li>You choose the channels.</li>
+    <li>Uninstall clears everything.</li>
+  </ul>
+  <p class="lead">Try it first: <a href="/demo/">the hands-on demo</a>.</p>
+  <p class="note">*Writing your lines depends on how many products you have.</p>
+</div></section>
 
-    var totalElapsed = current * SLIDE_DURATION + Math.min(elapsed, SLIDE_DURATION);
-    var totalDuration = total * SLIDE_DURATION;
-    progressEl.style.width = (totalElapsed / totalDuration * 100) + '%';
-
-    requestAnimationFrame(tick);
-  }
-
-  function restart() {
-    current = 0;
-    running = true;
-    progressEl.style.width = '0%';
-    startSlide(0);
-    requestAnimationFrame(tick);
-  }
-
-  // Replay button
-  document.getElementById('replay-btn').addEventListener('click', function(e){
-    e.stopPropagation();
-    paused = false;
-    pauseBtn.textContent = 'Pause';
-    restart();
-  });
-
-  // Pause/Resume button
-  pauseBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    if (paused) {
-      paused = false;
-      pauseBtn.textContent = 'Pause';
-      slideStart = Date.now() - pausedElapsed;
-      requestAnimationFrame(tick);
-    } else {
-      paused = true;
-      pausedElapsed = Date.now() - slideStart;
-      pauseBtn.textContent = 'Resume';
-    }
-  });
-
-  // Contact overlay
-  var overlay = document.getElementById('contact-overlay');
-  document.getElementById('contact-btn').addEventListener('click', function(e){
-    e.stopPropagation();
-    overlay.classList.add('open');
-  });
-  document.getElementById('contact-close').addEventListener('click', function(e){
-    e.stopPropagation();
-    overlay.classList.remove('open');
-  });
-  overlay.addEventListener('click', function(e){
-    if (e.target === overlay) overlay.classList.remove('open');
-  });
-
-  // Go
-  startSlide(0);
-  requestAnimationFrame(tick);
-})();
-</script>
+<section class="beat center" id="install"><div class="in">
+  <div class="film soon" aria-label="The Whole Story, a 30-second film, coming soon">
+    <img src="/assets/whole-story-still.jpg" alt="The Whole Story: MARLOW's product page, with the caption Every shopper decides in seconds" width="1280" height="720" loading="lazy">
+    <span class="play">The Whole Story · 30-second film, coming soon</span>
+  </div>
+  <h2 style="margin-top:64px">Install 6thSTAR on your Shopify store.</h2>
+  <div class="cta"><a class="btn lg" data-install href="/beta/">Install 6thSTAR</a></div>
+  <div class="faq">
+    <h3>Questions</h3>
+    <details><summary>What appears on my page?</summary>
+      <p>A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes.</p></details>
+    <details><summary>Which themes work?</summary>
+      <p>Themes with app blocks, such as Shopify's own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and <a href="/setup/#line">the guide</a> shows each click. On a theme without app blocks there's nothing to place; your star still shows.</p></details>
+    <details><summary>What data does it read?</summary>
+      <p>Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn't ask Shopify for a buyer's name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.</p></details>
+    <details><summary>How long until my lines are ready?</summary>
+      <p>Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live.</p></details>
+    <details><summary>What happens if I uninstall?</summary>
+      <p>Uninstall clears everything 6thSTAR added to your store.</p></details>
+    <details><summary>What does the beta involve?</summary>
+      <p>A small group of Shopify stores install 6thSTAR before it's listed. We set it up with you on a call, you read your lines before anything goes live, and you tell us what you see.</p></details>
+    <details><summary>Who do I contact?</summary>
+      <p><a href="mailto:6thstarsupport@gmail.com">6thstarsupport@gmail.com</a></p></details>
+  </div>
+</div></section>
+</main>
+<footer class="foot"><div class="in">
+  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:6thstarsupport@gmail.com">6thstarsupport@gmail.com</a></nav>
+  <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="120" height="120">
+</div></footer>
+<script src="/assets/site.js"></script>
 </body>
 </html>
