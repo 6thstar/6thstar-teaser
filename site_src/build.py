@@ -239,7 +239,7 @@ W2 = [
     ("In Shopify, click <b>Agentic</b>. Under Sources, click Shopify Catalog's status.", G + "ai-1.png", "Shopify admin, Agentic and Shopify Catalog's status outlined", "", ""),
     ("Click <b>Review your product data</b>. This opens Channel mapping.", G + "ai-2.png", "Shopify Catalog's status panel, Review your product data outlined", "", ""),
     ("Click into <b>Product description</b>, then <b>⊕</b>. Under Product metafields, choose <b>6thSTAR agent description</b>.", G + "ai-3.png", "The Product description source list, 6thSTAR agent description outlined", "", ""),
-    ("Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.", G + "ai-4.png", "Channel mapping, the Product description tag and Save outlined", "", ""),
+    ("Remove the <b>Product description</b> tag, so only 6thSTAR agent description is left. Click <b>Save</b>.", G + "ai-4.png", "Channel mapping with only 6thSTAR agent description left, and Save, outlined", "", ""),
     ("Done. Back in 6thSTAR, the AI shoppers card shows a green dot beside <b>Through Shopify</b>.", G + "ai-5.png", "The 6thSTAR AI shoppers card, Through Shopify with a green dot, outlined", "", ""),
 ]
 W2_HELP = [
