@@ -104,7 +104,6 @@ QS = [
 HOME = head("6thSTAR — Reduce returns. Build trust.",
             "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.") + f"""
 <section class="sec hero2" id="top"><div class="in intro">
-  <img class="intro-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <h1>Reduce Returns and Build Trust</h1>
   <p class="for">for Shopify stores</p>
 </div><div class="in two">
@@ -179,8 +178,9 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
     <p class="sub">6thSTAR is in beta. Seven steps, right inside your Shopify admin. Join the first stores to use it.</p>
     <div class="acts">{install()}</div>
   </div>
-</div>
-<div class="in faq2" id="questions">
+</div></section>
+
+<section class="sec" id="questions"><div class="in faq2">
   <h2 class="qh">Questions</h2>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
 </div></section>
