@@ -210,3 +210,35 @@ addEventListener("load", fitLines); addEventListener("resize", fitLines);
 document.querySelectorAll(".fcard,.fnext").forEach(a => a.addEventListener("click", () => setTimeout(fitLines, 0)));
 addEventListener("hashchange", () => setTimeout(fitLines, 0));
 
+
+/* v3.23 (Tracy: "there is room to show the card and not cut off. you ran out of room below"): from 900 px, if a card and
+   its Next headline are taller than the screen, its picture, diagram or film shrinks until they fit */
+(() => {
+  const frames = document.querySelector(".frames"); if (!frames) return;
+  const wide = matchMedia("(min-width:900px)");
+  const MEDIA = ".fpanel>.sec .page-shot, .fpanel>.sec svg.channels, .fpanel>.sec .story-big .film, .fpanel>.sec .hero-shot, .fpanel>.sec .herofilm";
+  const fit = () => {
+    document.querySelectorAll(MEDIA).forEach(m => m.style.removeProperty("width"));
+    if (!wide.matches) return;
+    const sec = frames.querySelector(".fpanel>.sec.on"); if (!sec) return;
+    const media = [...sec.querySelectorAll(MEDIA)].filter(m => m.getBoundingClientRect().height && !m.hidden);
+    const m = media[media.length - 1]; if (!m) return;
+    const z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+    const hdr = (document.querySelector(".top") || {}).offsetHeight || 93, foot = (document.querySelector(".foot") || {}).offsetHeight || 98;
+    const pan = getComputedStyle(sec.parentElement);
+    const avail = innerHeight / z - hdr - foot - parseFloat(pan.paddingTop) - parseFloat(pan.paddingBottom);
+    const next = sec.querySelector(".fnext");
+    for (let i = 0; i < 3; i++) {
+      let bottom = 0;
+      [...sec.children].forEach(c => { if (c !== next) bottom = Math.max(bottom, c.offsetTop + c.offsetHeight - sec.offsetTop); });
+      const need = bottom + (next ? next.offsetHeight : 0) - avail;
+      if (need <= 1) break;
+      const rc = m.getBoundingClientRect(), w = rc.width / z, h = rc.height / z || 1;
+      m.style.setProperty("width", Math.max(300, w * (h - need) / h) + "px", "important");
+    }
+  };
+  addEventListener("load", fit); addEventListener("resize", fit); addEventListener("hashchange", () => setTimeout(fit, 0));
+  document.querySelectorAll(".fcard,.fnext,[data-film-open]").forEach(a => a.addEventListener("click", () => setTimeout(fit, 50)));
+  document.addEventListener("click", e => { if (e.target.closest(".herofilm .restart, .film")) setTimeout(fit, 50); });
+  setTimeout(fit, 0);
+})();
