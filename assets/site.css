@@ -513,3 +513,5 @@ body{color:#333;font-size:17.5px}
 .film .restart:hover{border-color:#111}
 .foot .ver{margin-left:auto;font-size:13px;color:#777}
 @media (max-width:700px){.foot .ver{margin-left:0;width:100%}}
+/* Tracy 2026-11-27: the Next link stays on one line (it was a flex box, so its words wrapped as a block) */
+@media (min-width:900px){.fnext{display:inline-block;white-space:nowrap;max-width:100%}.fnext span{margin-right:10px}}
