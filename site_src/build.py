@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.6"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.7"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -134,7 +134,7 @@ def fnav(home, active=""):
         for k, th, cls, name in CARDS)
     return f'<nav class="fnav" aria-label="Sections">\n{items}\n</nav>'
 
-HOME = head("6thSTAR — Reduce returns. Build trust.",
+HOME = head("6thSTAR — Reduce Returns and Build Trust",
             "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect when they buy.") + f"""
 <div class="frames">
 @@FNAV@@
