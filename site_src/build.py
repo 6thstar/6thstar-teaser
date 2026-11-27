@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.7"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.8"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -372,7 +372,7 @@ import datetime
 (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
 _today = datetime.date.today().isoformat()
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
-    f"  <url><loc>{SITE_URL}/{u}</loc><lastmod>{_today}</lastmod></url>\n" for u in ("", "beta/", "terms/", "privacy/")) + "</urlset>\n")
+    f"  <url><loc>{SITE_URL}/{u}</loc><lastmod>{_today}</lastmod></url>\n" for u in ("", "beta/")) + "</urlset>\n")
 print("wrote robots.txt, sitemap.xml")
 
 # 404 page for the static site
@@ -380,6 +380,10 @@ print("wrote robots.txt, sitemap.xml")
     '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>')))
 
 # the not-found page is never listed by search engines
+# Terms and Privacy are placeholders until their final text (before submission): held back from search, still linked in the footer
+for _p in ("terms/index.html", "privacy/index.html"):
+    _f = ROOT / _p
+    _f.write_text(_f.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
 _nf = ROOT / "404.html"
 _nf.write_text(_nf.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
 
