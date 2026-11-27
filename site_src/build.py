@@ -104,13 +104,14 @@ QS = [
 # ── The left column of section cards (v3.0, Tracy 2026-11-27), on every page so it stays put ("left nav should be persistent").
 #    On Home a card shows its section in the panel; on other pages it opens Home at that section.
 CARDS = [
-    ("top", '<img src="/assets/marlow-hero-m.jpg" alt="">', "", "Reduce Returns and Build Trust"),
+    ("top", '<img src="/assets/marlow-hero.jpg" alt="">', "fth-shoe", "Reduce Returns and Build Trust"),
     ("why", "<i></i><i></i><i></i>", "fth-why", "Most returns start with a surprise"),
-    ("how", SOURCES_SVG, "", "One true phrase, at the moment shoppers decide"),
-    ("ai", CHANNELS_SVG, "", "Your product's truth, everywhere it's read"),
+    ("how", "<em>1</em><em>2</em><em>3</em>", "fth-how", "One true phrase, at the moment shoppers decide"),
+    ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your product's truth, everywhere it's read"),
     ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
     ("story", "<b></b>", "fth-film", "How to install · Request more information"),
     ("questions", "?", "fth-q", "Questions"),
+    ("about", "&ldquo;", "fth-q fth-about", "About 6thSTAR"),
 ]
 
 def fnav(home, active=""):
@@ -205,6 +206,12 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
 <section class="sec" id="questions"><div class="in faq2">
   <h2 class="qh">Questions</h2>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
+</div></section>
+
+<section class="sec" id="about"><div class="in about">
+  <h2>About 6thSTAR</h2>
+  <p class="about-text">I've spent nearly fifty years in retail, and I've watched the same thing happen again and again: a good product comes back, not because anything was wrong with it, but because it wasn't what the shopper expected. Online, that gap has only grown. Shoppers decide in seconds, on a photo, the stars and a price. I built 6thSTAR to give every product one honest moment at that point of decision. I'm confident it will work because it rests on how people actually decide, and on a truth I've seen my whole career: when a store is right about its products, shoppers trust it, and keep what they buy.</p>
+  <p class="about-sig">Tracy Rosen, founder</p>
 </div></section>
 </div></div>
 

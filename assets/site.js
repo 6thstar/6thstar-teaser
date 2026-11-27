@@ -149,6 +149,16 @@ if (frames && frames.querySelector(".fpanel>.sec")) {
     e.preventDefault(); history.replaceState(null, "", "#" + c.dataset.for); pick(c.dataset.for); scrollTo(0, 0);
   }));
   addEventListener("hashchange", () => { fromHash(); if (wide.matches) scrollTo(0, 0); });
+  /* a Next link at the foot of each section, so the story reads in order; the last one asks for a request */
+  secs.forEach((sec, i) => {
+    const a = document.createElement("a"); a.className = "fnext";
+    if (i < cards.length - 1) {
+      const nx = cards[i + 1]; a.href = "#" + nx.dataset.for;
+      a.innerHTML = "<span>Next:</span> " + nx.querySelector(".fname").textContent + " →";
+      a.addEventListener("click", e => { if (!wide.matches) return; e.preventDefault(); history.replaceState(null, "", a.hash); pick(nx.dataset.for); scrollTo(0, 0); });
+    } else { a.href = "/beta/"; a.textContent = "Request more information →"; }
+    (sec.querySelector(".in:last-child") || sec).appendChild(a);
+  });
   fromHash();
   if (wide.matches && location.hash) scrollTo(0, 0);
 }

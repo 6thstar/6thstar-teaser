@@ -473,3 +473,34 @@ body{color:#333;font-size:17.5px}
 }
 .sub .tap{display:none}
 @media (hover:none){.sub .hov{display:none}.sub .tap{display:inline}}
+/* About (Tracy 2026-11-27): Tracy's own words, after Questions */
+.about-text{font-size:20px!important;line-height:1.65;max-width:760px;margin-top:20px;color:#222}
+.about-sig{margin-top:22px;font-size:17px!important;font-weight:500;color:#111}
+.fth-about{font-size:44px;line-height:1;padding-top:14px}
+@media (max-width:700px){.about-text{font-size:18px!important}}
+
+/* ── v3.2 polish (Tracy 2026-11-27: "show me the best version"): one family of card pictures, a clearer chosen card,
+   and a Next link at the foot of each section so the story reads in order ── */
+@media (min-width:900px){
+  .fcard{grid-template-columns:88px minmax(0,1fr);padding:10px;gap:16px}
+  .fcard.on{border-color:var(--gold);background:#fffaf1}
+  .fth{height:56px;background:#fff}
+  .fth-shoe img{object-fit:cover;object-position:18% 60%;transform:scale(1.5)}
+  .fth-why{gap:8px;padding:0 14px}
+  .fth-why i{height:3px;border-radius:2px}
+  .fth-how{gap:6px}
+  .fth-how em{font-style:normal;width:20px;height:20px;border-radius:50%;background:#111;color:#fff;font-size:12px;font-weight:500;display:grid;place-items:center}
+  .fth-ai svg{width:80px;max-height:50px}
+  .fth-get{gap:5px;padding:9px 12px}
+  .fth-get i{border:1px solid #d8d8d8;border-top:3px solid var(--gold);border-radius:3px}
+  .fth-film{background:#111;border-color:#111}
+  .fth-film b{border-left-color:#fff}
+  .fth-q{font-size:30px;font-weight:400;color:#111}
+  .fth-about{color:var(--gold);font-size:46px;padding-top:18px}
+  .fname{font-size:15.5px;font-weight:500;color:#222}
+  .fnext{display:inline-flex;align-items:center;gap:10px;margin-top:48px;padding-top:20px;border-top:1px solid var(--rule);
+         font-size:16px;color:#111;text-decoration:none;font-weight:500}
+  .fnext span{color:#666;font-weight:400}
+  .fnext:hover{color:var(--gold-ink)}
+}
+@media (max-width:899px){.fnext{display:none}}
