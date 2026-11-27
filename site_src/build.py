@@ -142,8 +142,8 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 
 <section class="beat center" id="install"><div class="in">
   <div class="film" role="button" tabindex="0" aria-label="Watch The Whole Story, a 30-second film"
-       data-src="/assets/whole-story-v1-0.mp4" data-poster="/assets/whole-story-v1-0.jpg" data-vtt="/assets/whole-story-v1-0.vtt">
-    <img src="/assets/whole-story-v1-0.jpg" alt="The Whole Story: MARLOW's product page, with the 6thSTAR line open" width="1280" height="720" loading="lazy">
+       data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-v1-1.jpg" data-vtt="/assets/whole-story-v1-1.vtt">
+    <img src="/assets/whole-story-v1-1.jpg" alt="The Whole Story: MARLOW's product page, with the 6thSTAR line open" width="1280" height="720" loading="lazy">
     <span class="play">Watch The Whole Story · 30 seconds</span>
   </div>
   <h2 style="margin-top:64px">Install 6thSTAR on your Shopify store.</h2>
