@@ -465,3 +465,11 @@ body{color:#333;font-size:17.5px}
   .fpanel .qcols{grid-template-columns:1fr 1fr;gap:0 40px}
   .fpanel .hero2 .two{grid-template-columns:.85fr 1.3fr;gap:40px}
 }
+/* v3.1: the card column on every page; a page's own content sits in the panel */
+@media (min-width:900px){
+  .fpage .page,.fpage .page.wide{max-width:980px;margin:0;padding:0}
+  .fth-setup img{object-fit:cover;object-position:left center}
+  .fpanel #setup .gtiles:first-of-type{margin-top:28px}
+}
+.sub .tap{display:none}
+@media (hover:none){.sub .hov{display:none}.sub .tap{display:inline}}

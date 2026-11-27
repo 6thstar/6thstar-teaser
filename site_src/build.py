@@ -27,7 +27,6 @@ def head(title, desc):
   <nav>
     <a class="txt" href="/#how">How it works</a>
     <a class="txt" href="/#ai">All channels</a>
-    <a class="txt" href="/setup/">Setup</a>
     <a class="txt" href="/#questions">Questions</a>
   </nav>
 </div></header>
@@ -37,7 +36,7 @@ def head(title, desc):
 FOOT = f"""</main>
 <footer class="foot"><div class="in">
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
-  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/setup/">Setup guides</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
+  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
 </div></footer>
 <script src="/assets/site.js"></script>
 </body>
@@ -93,7 +92,7 @@ def qa(q, a):
 
 QS = [
     qa("What appears on my page?", "A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes."),
-    qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and <a href="/setup/#line">the guide</a> shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
+    qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and 6thSTAR\'s setup guide shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
     qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.'),
     qa("How long until my lines are ready?", "Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live."),
     qa("Will it cost me sales?", "No. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would."),
@@ -101,18 +100,30 @@ QS = [
     qa("Who do I contact?", f'<a href="mailto:{CONTACT}">{CONTACT}</a>'),
 ]
 
+
+# ── The left column of section cards (v3.0, Tracy 2026-11-27), on every page so it stays put ("left nav should be persistent").
+#    On Home a card shows its section in the panel; on other pages it opens Home at that section.
+CARDS = [
+    ("top", '<img src="/assets/marlow-hero-m.jpg" alt="">', "", "Reduce Returns and Build Trust"),
+    ("why", "<i></i><i></i><i></i>", "fth-why", "Most returns start with a surprise"),
+    ("how", SOURCES_SVG, "", "One true phrase, at the moment shoppers decide"),
+    ("ai", CHANNELS_SVG, "", "Your product's truth, everywhere it's read"),
+    ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
+    ("story", "<b></b>", "fth-film", "How to install · Request more information"),
+    ("questions", "?", "fth-q", "Questions"),
+]
+
+def fnav(home, active=""):
+    pre = "#" if home else "/#"
+    items = "\n".join(
+        f'  <a class="fcard{" on" if k == active else ""}" href="{pre}{k}" data-for="{k}"><span class="fth {cls}">{th}</span><span class="fname">{name}</span></a>'
+        for k, th, cls, name in CARDS)
+    return f'<nav class="fnav" aria-label="Sections">\n{items}\n</nav>'
+
 HOME = head("6thSTAR — Reduce returns. Build trust.",
             "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.") + f"""
 <div class="frames">
-<nav class="fnav" aria-label="Sections">
-  <a class="fcard" href="#top" data-for="top"><span class="fth"><img src="/assets/marlow-hero-m.jpg" alt=""></span><span class="fname">Reduce Returns and Build Trust</span></a>
-  <a class="fcard" href="#why" data-for="why"><span class="fth fth-why"><i></i><i></i><i></i></span><span class="fname">Most returns start with a surprise</span></a>
-  <a class="fcard" href="#how" data-for="how"><span class="fth">{SOURCES_SVG}</span><span class="fname">One true phrase, at the moment shoppers decide</span></a>
-  <a class="fcard" href="#ai" data-for="ai"><span class="fth">{CHANNELS_SVG}</span><span class="fname">Your product's truth, everywhere it's read</span></a>
-  <a class="fcard" href="#get" data-for="get"><span class="fth fth-get"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="fname">Close the gap, and trust follows</span></a>
-  <a class="fcard" href="#story" data-for="story"><span class="fth fth-film"><b></b></span><span class="fname">How to install · Request more information</span></a>
-  <a class="fcard" href="#questions" data-for="questions"><span class="fth fth-q">?</span><span class="fname">Questions</span></a>
-</nav>
+@@FNAV@@
 <div class="fpanel">
 <section class="sec hero2" id="top"><div class="in intro">
   <h1>Reduce Returns and Build Trust</h1>
@@ -179,10 +190,10 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
 </div></section>
 
 <section class="sec" id="story"><div class="in story-big">
-  <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR, a 52-second film"
-       data-src="/assets/how-to-install-v1-1.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-1.vtt">
+  <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR, a 54-second film"
+       data-src="/assets/how-to-install-v1-2.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-2.vtt">
     <div class="poster"><img class="film-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"><p>How to install 6thSTAR</p></div>
-    <span class="play">Watch how to install · 52 seconds</span>
+    <span class="play">Watch how to install · 54 seconds</span>
   </div>
   <div class="words cta-only">
     <h2>Request more information.</h2>
@@ -316,7 +327,15 @@ PRIVACY = placeholder("6thSTAR privacy", "The 6thSTAR privacy policy.", "Privacy
 DEMO = placeholder("6thSTAR demo", "A hands-on 6thSTAR demo.", "The hands-on demo",
     '<p class="lead">Coming soon: try 6thSTAR yourself, on a sample store with made data. No login.</p>')
 
-PAGES = {"index.html": HOME, "beta/index.html": BETA, "setup/index.html": SETUP,
+HOME = HOME.replace("@@FNAV@@", fnav(True))
+
+def framed(html, active=""):
+    """Every page but Home: the card column on the left, the page's own content in the panel."""
+    return html.replace("<main>\n", f'<main>\n<div class="frames">{fnav(False, active)}\n<div class="fpanel fpage">\n', 1).replace("</main>", "</div></div>\n</main>", 1)
+
+BETA, TERMS, PRIVACY, DEMO = framed(BETA), framed(TERMS), framed(PRIVACY), framed(DEMO)   # Tracy 2026-11-27: setup guides off the site for now ("not needed at this point"); guides.json still built for the app
+
+PAGES = {"index.html": HOME, "beta/index.html": BETA,
          "terms/index.html": TERMS, "privacy/index.html": PRIVACY, "demo/index.html": DEMO}
 
 for path, html in PAGES.items():
@@ -326,8 +345,8 @@ for path, html in PAGES.items():
     print("wrote", path, len(html))
 
 # 404 page for the static site
-(ROOT / "404.html").write_text(placeholder("6thSTAR", "Page not found.", "Page not found",
-    '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>'))
+(ROOT / "404.html").write_text(framed(placeholder("6thSTAR", "Page not found.", "Page not found",
+    '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>')))
 
 # The same guides, for the 6thSTAR app (CC_MD v1.2: "Build them once, with the same screens and words in both places").
 # The app copies assets/guides/guides.json and the shots into shopify_poc/mvp/guides/.

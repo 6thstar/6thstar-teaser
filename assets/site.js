@@ -135,7 +135,7 @@ if (zoom) {
 
 /* ── Home as frames (Tracy 2026-11-27): a card on the left shows its section in the right two thirds; the address follows ── */
 const frames = document.querySelector(".frames");
-if (frames) {
+if (frames && frames.querySelector(".fpanel>.sec")) {
   const cards = [...frames.querySelectorAll(".fcard")], secs = [...frames.querySelectorAll(".fpanel>.sec")];
   const wide = matchMedia("(min-width:900px)");
   const pick = id => {
