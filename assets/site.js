@@ -187,10 +187,3 @@ addEventListener("load", fitLines); addEventListener("resize", fitLines);
 document.querySelectorAll(".fcard,.fnext").forEach(a => a.addEventListener("click", () => setTimeout(fitLines, 0)));
 addEventListener("hashchange", () => setTimeout(fitLines, 0));
 
-/* ── Request more information: a small icon at the bottom right of every section (Tracy 2026-11-27) ── */
-document.querySelectorAll(".fpanel>.sec").forEach(sec => {
-  const a = document.createElement("a");
-  a.className = "reqi"; a.href = INSTALL_HREF; a.setAttribute("aria-label", "Request more information"); a.title = "Request more information";
-  a.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
-  sec.appendChild(a);
-});

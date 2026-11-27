@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.9"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.10"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>

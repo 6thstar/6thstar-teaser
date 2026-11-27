@@ -537,12 +537,3 @@ body{color:#333;font-size:17.5px}
   .steps .pic{height:auto!important;min-height:160px;margin:0 0 14px!important}
 }
 
-/* Request more information: a small icon at the bottom right of every section (Tracy 2026-11-27), not in the left column */
-.fpanel>.sec{position:relative}
-.reqi{position:absolute;right:0;bottom:0;width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:#fff;
-  display:grid;place-items:center;color:#111;text-decoration:none;transition:background .12s}
-.reqi:hover{background:#fff4e0}
-.reqi svg{width:22px;height:22px}
-.reqi::after{content:attr(aria-label);position:absolute;right:54px;white-space:nowrap;font-size:14px;color:#333;opacity:0;transition:opacity .12s;pointer-events:none}
-.reqi:hover::after,.reqi:focus-visible::after{opacity:1}
-@media (max-width:899px){.fpanel>.sec{padding-bottom:64px!important}.reqi{right:var(--gutter);bottom:14px}}
