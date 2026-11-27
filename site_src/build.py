@@ -104,9 +104,12 @@ QS = [
 
 HOME = head("6thSTAR — Reduce returns. Build trust.",
             "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.") + f"""
-<section class="sec hero2" id="top"><div class="in two">
+<section class="sec hero2" id="top"><div class="in intro">
+  <img class="intro-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="480" height="480">
+  <h1>Reduce Returns and Build Trust</h1>
+  <p class="for">for Shopify stores</p>
+</div><div class="in two">
   <div class="words">
-    <h1>Reduce returns. Build trust.</h1>
     <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.</p>
     <div class="acts">
       <button class="playlink" type="button" data-film-open data-src="/assets/spot-v2-8.mp4" data-poster="/assets/spot-v2-8.jpg" data-vtt="/assets/spot-v2-8.vtt">Watch the 30-second spot</button>
