@@ -40,23 +40,30 @@ document.querySelectorAll(".film[data-src]").forEach(box => {
   box.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); start(); } });
 });
 
-/* ── The spot from the hero (Script v2.0): opens in a box and plays only after the click; closing stops it ── */
-const box = document.querySelector("dialog.filmbox");
+/* ── The spot from the hero: plays in place of the hero picture, inside the right panel, so the left cards stay
+   (Tracy 2026-11-27: "video should play on the right side so left nav is persistent"). Close brings the picture back. ── */
 document.querySelectorAll("[data-film-open]").forEach(b => b.addEventListener("click", () => {
-  if (!box || !box.showModal) { location.href = b.dataset.src; return; }
+  const sec = b.closest("section"), shot = sec && sec.querySelector(".hero-shot");
+  if (!shot) { location.href = b.dataset.src; return; }
+  let wrap = sec.querySelector(".herofilm");
+  if (wrap) wrap.remove();
+  wrap = document.createElement("div"); wrap.className = "herofilm";
   const v = document.createElement("video");
   v.src = b.dataset.src; v.controls = true; v.playsInline = true;
   if (b.dataset.poster) v.poster = b.dataset.poster;
   if (b.dataset.vtt) { const t = document.createElement("track"); t.kind = "captions"; t.srclang = "en"; t.label = "English"; t.src = b.dataset.vtt; v.appendChild(t); }
-  box.querySelector(".slot").replaceChildren(v);
-  box.showModal(); v.play().catch(() => {});
+  const x = document.createElement("button");
+  x.type = "button"; x.className = "restart"; x.textContent = "✕ Close";
+  x.addEventListener("click", () => { v.pause(); wrap.remove(); shot.hidden = false; b.focus(); });
+  wrap.append(v, x);
+  shot.hidden = true; shot.after(wrap);
+  wrap.scrollIntoView({ block: "nearest" });
+  v.play().catch(() => {});
 }));
-if (box) {
-  const shut = () => { const v = box.querySelector("video"); if (v) v.pause(); box.querySelector(".slot").replaceChildren(); };
-  box.addEventListener("close", shut);
-  box.querySelector(".x").addEventListener("click", () => box.close());
-  box.addEventListener("click", e => { if (e.target === box) box.close(); });
-}
+/* a film stops when another card is chosen */
+const pauseAll = () => document.querySelectorAll("video").forEach(v => v.pause());
+document.querySelectorAll(".fcard,.fnext").forEach(a => a.addEventListener("click", pauseAll));
+addEventListener("hashchange", pauseAll);
 
 /* ── MARLOW: the star opens the line on hover, focus or tap ── */
 document.querySelectorAll(".shot[data-line]").forEach(shot => {
@@ -147,7 +154,10 @@ if (frames && frames.querySelector(".fpanel>.sec")) {
   const cards = [...frames.querySelectorAll(".fcard")], secs = [...frames.querySelectorAll(".fpanel>.sec")];
   const wide = matchMedia("(min-width:900px)");
   const pick = id => {
-    if (!secs.some(s => s.id === id)) id = "top";
+    if (!secs.some(s => s.id === id)) {               /* v3.13: an id inside a section (e.g. #about, now on Questions) opens that section */
+      const el = document.getElementById(id), sec = el && el.closest(".fpanel>.sec");
+      id = sec ? sec.id : "top";
+    }
     secs.forEach(s => s.classList.toggle("on", s.id === id));
     cards.forEach(c => c.classList.toggle("on", c.dataset.for === id));
   };

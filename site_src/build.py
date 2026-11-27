@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.11"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.13"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -39,7 +39,7 @@ def head(title, desc):
   <nav>
     <a class="txt" href="/#how">How it works</a>
     <a class="txt" href="/#ai">All channels</a>
-    <a class="txt" href="/#questions">Questions</a>
+    <a class="txt" href="/#questions">Questions / About</a>
   </nav>
 </div></header>
 <main>
@@ -123,8 +123,7 @@ CARDS = [
     ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your product's truth, everywhere it's read"),
     ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
     ("story", "<b></b>", "fth-film", "How to install"),
-    ("questions", "?", "fth-q", "Questions"),
-    ("about", "&ldquo;", "fth-q fth-about", "About 6thSTAR"),
+    ("questions", "?", "fth-q", "Questions / About"),
 ]
 
 def fnav(home, active=""):
@@ -146,13 +145,13 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
   <div class="words">
     <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect when they buy.</p>
     <div class="acts">
-      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-3.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-3.vtt">Watch the 30-second film</button>
+      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-4.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-4.vtt">Watch the 30-second film</button>
     </div>
   </div>
   <figure class="shot open hero-shot">
     <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero-v2.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="420"></picture>
     <div class="line-pop">{LINE}</div></div>
-    <span class="tag">Sample store, made data</span>
+    
   </figure>
 </div></section>
 
@@ -172,7 +171,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
   <ol class="steps">
     <li><div class="pic">{SOURCES_SVG}</div><h3><span>1</span>It reads your store.</h3><p>Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after: your product pages, reviews and returns.</p></li>
     <li><div class="pic">{POINT_SVG}</div><h3><span>2</span>It finds the one thing shoppers don't expect.</h3><p>Stars tell what buyers said. Returns tell what they kept.</p></li>
-    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div><span class="tag">Sample store, made data</span></figure></div><h3><span>3</span>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
+    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div></figure></div><h3><span>3</span>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
   </ol>
 </div></section>
 
@@ -205,7 +204,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 
 <section class="sec" id="story"><div class="in story-big">
   <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR"
-       data-src="/assets/how-to-install-v1-2.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-2.vtt">
+       data-src="/assets/how-to-install-v1-3.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-3.vtt">
     <div class="poster"><img class="film-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"><p>How to install 6thSTAR</p></div>
     <span class="play">Watch how to install</span>
   </div>
@@ -214,9 +213,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 <section class="sec" id="questions"><div class="in faq2">
   <h2 class="qh">Questions</h2>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
-</div></section>
-
-<section class="sec" id="about"><div class="in about">
+</div><div class="in about" id="about">
   <h2>About 6thSTAR</h2>
   <p class="about-text">I've spent nearly fifty years in retail, and the costliest returns I've seen weren't defects. They were surprises. Every shopper buys an expectation first, formed in seconds from a photo, the stars and a price. Then the product arrives, and that expectation meets lived reality. When the two match, the shopper keeps it and trusts the store. When they don't, the box comes back, even when nothing is wrong. I built 6thSTAR to close that gap before the sale. I'm confident it will work because disappointment is always measured against expectation. Get the expectation right, and trust follows.</p>
   <p class="about-sig">Tracy Rosen, founder</p>
@@ -224,7 +221,6 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 </div></section>
 </div></div>
 
-<dialog class="filmbox" aria-label="The Whole Story, a 30-second film"><button class="x" type="button" aria-label="Close">×</button><div class="slot"></div></dialog>
 """ + FOOT
 
 # ── /beta ──
