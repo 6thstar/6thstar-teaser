@@ -613,3 +613,37 @@ svg text:not([fill]){fill:#111}
   .herofilm{max-width:calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 120px) * 16 / 9);
     scroll-margin-top:calc(var(--hdr,93px) + 16px)}
 }
+/* v3.18 (Tracy: "space boxes to better fill the space"): from 900 px the six boxes fill the panel down to the Next headline */
+@media (min-width:900px){
+  .fpanel #get > .in{display:flex;flex-direction:column;min-height:calc(100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 56px - 150px)}
+  .fpanel #get .tiles{flex:1;grid-auto-rows:1fr;gap:28px;margin-top:40px;max-height:640px}
+  .fpanel #get .tile{display:flex;flex-direction:column;justify-content:center;padding:32px 34px}
+  .fpanel #get .tile h3{font-size:21px!important;margin-bottom:10px}
+  .fpanel #get .tile p{font-size:18px!important}
+}
+/* v3.18 (Tracy: "move restart to bottom right corner"): just above the film's play bar */
+.film .restart{top:auto!important;bottom:64px;right:14px}
+/* v3.18: the film's product page on Most returns, with the 6thSTAR phrase open under the stars */
+.page-shot{margin-top:44px;max-width:900px}
+@media (min-width:900px){.page-shot{max-width:min(900px,max(480px,calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 400px) * 1200 / 500)))}}
+.page-shot .frame{position:relative}
+.page-shot .frame img{display:block;width:100%;height:auto}
+.page-shot .line-pop{left:57.6%!important;right:auto!important;top:51.5%!important}
+@media (min-width:900px){
+  .fpanel .page-shot{width:min(100%,max(420px,calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 330px) * 1200 / 500)))!important;
+    max-width:none!important;margin-top:36px!important}
+}
+/* v3.19 (Tracy: "no continuity between font size strength between headline, subheadline and next from page to page.
+   make each page model this [One true phrase] and the next headline should be same size/color as top subheadline") */
+.sec h1,.sec h2{font-size:34px!important;font-weight:400!important;letter-spacing:-.01em!important;line-height:1.15!important;color:#111!important}
+.sec h1 + .for,.sec .sub,.hero2 .words .sub{font-size:19px!important;font-weight:300!important;color:#111!important;line-height:1.5!important}
+.hero2 .for{margin-top:12px!important}
+.sec h2 + .sub{margin-top:12px!important}
+@media (max-width:700px){.sec h1,.sec h2{font-size:28px!important}}
+@media (min-width:900px){
+  .fpanel .sec .fnext,.fpanel .sec .fnext span{font-size:19px!important;color:#111!important}
+  .fpanel .sec .fnext span{font-weight:300!important}
+  .fpanel .sec .fnext{font-weight:500!important}
+  .fpanel .story-big .film{max-width:calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 190px) * 16 / 9)!important}
+  .fpanel .story-big h2 + .sub{margin-bottom:28px!important}
+}

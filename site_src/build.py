@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.17"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.19"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -23,7 +23,7 @@ def head(title, desc):
 <meta property="og:image" content="https://6thstar.us/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Reduce Returns and Build Trust, for Shopify stores: the 6thSTAR line on a product page">
+<meta property="og:image:alt" content="Reduce Returns and Build Trust, for Shopify stores: the 6thSTAR phrase on a product page">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
@@ -94,7 +94,7 @@ CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" ar
     <rect x="12" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="92" y="341">Instagram</text>
     <rect x="348" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="428" y="341">Gorgias</text>
     <rect x="170" y="158" width="180" height="84" rx="14" fill="#fff8ec" stroke="#d9c39b"/>
-    <text x="260" y="195" font-size="18" font-weight="500" fill="#111">Product record</text><text x="260" y="220" font-size="14" fill="#222">your product's truth</text>
+    <text x="260" y="195" font-size="18" font-weight="500" fill="#111">Product record</text><text x="260" y="220" font-size="14" fill="#222">with the 6thSTAR phrase</text>
   </g>
 </svg>"""
 
@@ -105,12 +105,12 @@ def qa(q, a):
     return f'<details><summary>{q}</summary><p>{a}</p></details>'
 
 QS = [
-    qa("What appears on my page?", "A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes."),
-    qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and 6thSTAR\'s setup guide shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
+    qa("What appears on my page?", "A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and the 6thSTAR phrase opens. Nothing else on your page changes."),
+    qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR phrase under your review stars in the theme editor, and 6thSTAR\'s setup guide shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
     qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address.'),
-    qa("How long until my lines are ready?", "Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live."),
-    qa("Will it cost me sales?", "No. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would."),
-    qa("What happens if I uninstall?", "Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them."),
+    qa("How long until my 6thSTAR phrases are ready?", "Installing takes about 20 minutes. Writing your 6thSTAR phrases then depends on how many products you have. You read them before anything goes live."),
+    qa("Will it cost me sales?", "No. Each 6thSTAR phrase first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would."),
+    qa("What happens if I uninstall?", "Uninstall from 6thSTAR's Settings and it clears everything it added: the 6thSTAR phrase, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them."),
     qa("Who do I contact?", f'<a href="mailto:{CONTACT}">{CONTACT}</a>'),
 ]
 
@@ -121,7 +121,7 @@ CARDS = [
     ("top", '<img src="/assets/marlow-hero.jpg" alt="">', "fth-shoe", "Reduce Returns and Build Trust"),
     ("why", "<i></i><i></i><i></i>", "fth-why", "Most returns start with a surprise"),
     ("how", '<svg viewBox="0 0 96 60" aria-hidden="true"><circle cx="14" cy="30" r="7" fill="#ff9900"/><rect x="28" y="19" width="62" height="22" rx="11" fill="#fff8ec" stroke="#d9c39b" stroke-width="1.5"/></svg>', "fth-how", "One true phrase, at the moment shoppers decide"),
-    ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your product's truth, everywhere it's read"),
+    ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your 6thSTAR phrase, everywhere it's read"),
     ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
     ("story", "<b></b>", "fth-film", "How to install"),
     ("questions", "?", "fth-q", "Questions / About"),
@@ -150,7 +150,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     </div>
   </div>
   <figure class="shot open hero-shot">
-    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero-v2.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="420"></picture>
+    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero-v2.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR phrase open under them" width="1200" height="420"></picture>
     <div class="line-pop">{LINE}</div></div>
     
   </figure>
@@ -164,6 +164,10 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     <div><h3>The impression becomes the yardstick</h3><p>Whatever arrives is judged against what the shopper expected.</p></div>
     <div><h3>A missed expectation comes back</h3><p>Not because it's faulty, just not what they expected. The margin goes back with the box.</p></div>
   </div>
+  <figure class="shot open page-shot">
+    <div class="frame"><img src="/assets/marlow-page-crop.jpg" alt="MARLOW SUEDE TRAINER TAN on a product page, with the 6thSTAR phrase open under the review stars" width="1200" height="500" loading="lazy">
+    <div class="line-pop" data-room="0.4">{LINE}</div></div>
+  </figure>
 </div></section>
 
 <section class="sec" id="how"><div class="in">
@@ -172,17 +176,17 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
   <ol class="steps">
     <li><div class="pic">{SOURCES_SVG}</div><h3>It reads your store.</h3><p>Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after: your product pages, reviews and returns.</p></li>
     <li><div class="pic">{POINT_SVG}</div><h3>It finds the one thing shoppers don't expect.</h3><p>Stars tell what buyers said. Returns tell what they kept.</p></li>
-    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div></figure></div><h3>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
+    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR phrase open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div></figure></div><h3>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
   </ol>
 </div></section>
 
 <section class="sec" id="ai"><div class="in two">
   <div class="words">
-    <p class="kicker">Every shopper. Every AI shopper.</p>
-    <h2>Your product's truth, everywhere it's read.</h2>
+    <h2>Your 6thSTAR phrase, everywhere it's read.</h2>
+    <p class="sub">Every shopper. Every AI shopper.</p>
     <ul class="ticks">
       <li>Shoppers see it on your product page and in your description.</li>
-      <li>AI shoppers read the same truth in your product record, through Shopify to ChatGPT and Copilot, and on the open web beside the star.</li>
+      <li>AI shoppers read the same phrase in your product record, through Shopify to ChatGPT and Copilot, and on the open web beside the star.</li>
       <li>You choose the channels: AI shoppers, product pages, descriptions, Instagram, Gorgias.</li>
     </ul>
   </div>
@@ -198,12 +202,14 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     {tile("More shopper trust.", "What arrives is what they expected.")}
     {tile("More AI-shopper trust.", "Agents read what buyers kept, not only what they said.")}
     {tile("Your words, untouched.", "6thSTAR only adds. It never rewrites your copy.")}
-    {tile("Your brand's voice.", "Your own praise words lead every line, and you can edit them.")}
+    {tile("Your brand's voice.", "Your own praise words lead every 6thSTAR phrase, and you can edit them.")}
     {tile("See it working.", "Live Results shows returns before, forecast and actual, down to each product.")}
   </div>
 </div></section>
 
 <section class="sec" id="story"><div class="in story-big">
+  <h2>How to install 6thSTAR.</h2>
+  <p class="sub">Seven steps, right inside your Shopify admin.</p>
   <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR"
        data-src="/assets/how-to-install-v1-3.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-3.vtt">
     <div class="poster"><img class="film-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"><p>How to install 6thSTAR</p></div>
@@ -213,6 +219,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
 
 <section class="sec" id="questions"><div class="in faq2">
   <h2 class="qh">Questions</h2>
+  <p class="sub">Short answers to what retailers ask first.</p>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
 </div><div class="in about" id="about">
   <h2>About 6thSTAR</h2>
