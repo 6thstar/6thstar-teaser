@@ -537,3 +537,12 @@ body{color:#333;font-size:17.5px}
   .steps .pic{height:auto!important;min-height:160px;margin:0 0 14px!important}
 }
 
+
+/* v3.11 (Tracy 2026-11-27: "clear of the shoe"): the hero picture sets the shoe smaller at the left, so the one-line 6thSTAR line
+   sits under the stars without touching it; in the panel the picture spans the full width under the words */
+@media (min-width:701px){.hero-shot .line-pop{left:37.6%!important;right:auto!important;top:61%!important}}
+@media (min-width:900px){
+  .fpanel .hero2 .two{grid-template-columns:1fr!important;gap:28px}
+  .fpanel .hero2 .words .sub{max-width:760px}
+  .fpanel .hero-shot{max-width:980px}
+}

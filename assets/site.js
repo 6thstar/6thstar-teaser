@@ -178,7 +178,7 @@ const fitLines = () => document.querySelectorAll(".shot .line-pop").forEach(el =
   if (!frame.offsetWidth) return;
   const hero = !!el.closest(".hero-shot");
   const wide = matchMedia("(min-width:701px)").matches;
-  const room = frame.clientWidth * (hero && wide ? 0.96 : 0.94);
+  const room = frame.clientWidth * (hero && wide ? 0.6 : 0.94);   /* v3.11: the hero line sits under the stars, clear of the shoe */
   let size = hero ? 16 : 14;
   el.style.setProperty("font-size", size + "px", "important");
   while (el.offsetWidth > room && size > 7) { size -= 0.5; el.style.setProperty("font-size", size + "px", "important"); }

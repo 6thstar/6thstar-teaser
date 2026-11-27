@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.10"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.11"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -150,7 +150,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     </div>
   </div>
   <figure class="shot open hero-shot">
-    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="455"></picture>
+    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero-v2.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="420"></picture>
     <div class="line-pop">{LINE}</div></div>
     <span class="tag">Sample store, made data</span>
   </figure>
@@ -355,11 +355,16 @@ PAGES = {"index.html": HOME, "beta/index.html": BETA,
          "terms/index.html": TERMS, "privacy/index.html": PRIVACY, "demo/index.html": DEMO}
 
 SITE_URL = "https://6thstar.us"
+import re as _re
+def tm(html):
+    """Tracy 2026-11-27: "add a ™ to the name 6thSTAR everywhere" (the pages only; guides.json stays byte-identical to the app's)."""
+    return _re.sub(r"6thSTAR(?!™)", "6thSTAR™", html)
 for path, html in PAGES.items():
     p = ROOT / path
     p.parent.mkdir(parents=True, exist_ok=True)
     url = SITE_URL + "/" + path.replace("index.html", "")
     # one address per page for search engines and link previews (www and http show the same page)
+    html = tm(html)
     html = html.replace("</head>", f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">\n</head>', 1)
     p.write_text(html)
     print("wrote", path, len(html))
@@ -381,7 +386,7 @@ for _p in ("terms/index.html", "privacy/index.html"):
     _f = ROOT / _p
     _f.write_text(_f.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
 _nf = ROOT / "404.html"
-_nf.write_text(_nf.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
+_nf.write_text(tm(_nf.read_text()).replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
 
 # The same guides, for the 6thSTAR app (CC_MD v1.2: "Build them once, with the same screens and words in both places").
 # The app copies assets/guides/guides.json and the shots into shopify_poc/mvp/guides/.
