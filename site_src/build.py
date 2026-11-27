@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.21"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.22"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -82,7 +82,7 @@ POINT_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="Th
   <g font-family="Roboto, sans-serif" fill="#111"><text x="82" y="105" font-size="12.5">Runs a little narrow across the foot</text></g>
 </svg>"""
 
-CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" aria-label="The product record in the centre, with lines out to the product page, the description, AI shoppers through Shopify, the open web, Instagram and Gorgias">
+CHANNELS_SVG = """<svg class="draw channels" viewBox="0 36 520 328" role="img" aria-label="The product record in the centre, with lines out to the product page, the description, AI shoppers through Shopify, the open web, Instagram and Gorgias">
   <g stroke="#bdbdbd" stroke-width="1.5" fill="none">
     <path d="M260 200 L 92 64"/><path d="M260 200 L 428 64"/><path d="M260 200 L 52 200"/><path d="M260 200 L 468 200"/><path d="M260 200 L 92 336"/><path d="M260 200 L 428 336"/>
   </g>

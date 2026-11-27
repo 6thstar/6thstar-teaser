@@ -672,3 +672,12 @@ svg text:not([fill]){fill:#111}
   .fpanel #get .tiles{max-height:560px!important;grid-auto-rows:minmax(min-content,1fr)!important}
 }
 @media (min-width:900px) and (max-width:1279px){.fpanel #get .tiles{max-height:none!important}}
+/* v3.22 (Tracy: "make this bigger and center"): the channel diagram as large as the free space allows, centred */
+@media (min-width:900px){
+  .fpanel #ai svg.channels{width:min(100%,820px,max(380px,calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 84px - 330px) * 520 / 328)))!important;
+    margin:24px auto 0!important}
+}
+/* v3.22 (Tracy: "about font should be same size as answers to questions. not shouting at reader") */
+.about-text{font-size:16.5px!important;font-weight:400!important;line-height:1.55!important;max-width:760px}
+.about-sig{font-size:16.5px!important}
+@media (max-width:700px){.about-text{font-size:16.5px!important}}
