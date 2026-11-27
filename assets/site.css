@@ -356,3 +356,18 @@ body{color:#333;font-size:17.5px}
 .story-big .poster{aspect-ratio:16/9;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
 .story-big .poster p{font-size:clamp(24px,3.4vw,44px);font-weight:300;color:var(--ink)}
 .film-mark{width:72px!important;height:72px!important;flex-shrink:0}
+
+/* ── /setup v3 (Tracy 2026-11-27): the number alone, top right; a bolder outline; pointing at a step opens it very large, only while there ── */
+.tile-step{border:2px solid #b8b8b8;border-radius:12px}
+.tile-step:hover,.tile-step:focus-visible{border-color:#000}
+.tile-step img{padding:12px}
+.tnum{left:auto;right:12px;top:8px;background:none;color:#000;padding:0;font:500 20px/1 "Roboto",sans-serif}
+.tdet{display:none}
+.tzoom{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(255,255,255,.9);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .12s}
+.tzoom.on{opacity:1;visibility:visible}
+@media (hover:none){.tzoom.on{pointer-events:auto}}
+.tzoom figure{background:#fff;border:2px solid #000;border-radius:14px;padding:18px;max-width:min(1280px,96vw);box-shadow:0 24px 70px rgba(0,0,0,.18)}
+.tzoom img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto;margin:0 auto;image-rendering:auto}
+.tzoom figcaption{margin-top:14px;font-size:clamp(17px,1.6vw,21px);font-weight:400;color:#000;text-align:center}
+.tile-step img{padding:40px 12px 12px}

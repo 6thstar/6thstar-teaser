@@ -26,7 +26,7 @@ def head(title, desc):
   <a class="brand" href="/" aria-label="6thSTAR home"><img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"></a>
   <nav>
     <a class="txt" href="/#how">How it works</a>
-    <a class="txt" href="/#ai">AI shoppers</a>
+    <a class="txt" href="/#ai">All channels</a>
     <a class="txt" href="/setup/">Setup</a>
     <a class="txt" href="/#questions">Questions</a>
   </nav>
@@ -226,11 +226,11 @@ def wizard(id_, title, steps, help_):
     for (say, img, alt, ph, label) in steps:
         if not label:
             n += 1
-        num = escape(label) if label else f"Step {n}"
-        tiles.append(f"""    <li class="tile-step" tabindex="0">
+        num = escape(label) if label else str(n)
+        tiles.append(f"""    <li class="tile-step" tabindex="0" aria-label="{escape(label) if label else f'Step {n}'}">
       <span class="tnum">{num}</span>
       <img src="{img}" alt="{escape(alt)}" loading="lazy">
-      <div class="tdet"><p>{say}</p><a class="tfull" href="{img}" target="_blank" rel="noopener">Full size ↗</a></div>
+      <div class="tsay" hidden>{say}</div>
     </li>""")
     h = "\n".join(f"    <p>{p}</p>" for p in help_)
     return f"""
@@ -277,9 +277,10 @@ W2_HELP = [
 SETUP = head("6thSTAR setup guides", "Step-by-step guides: place the 6thSTAR line, and share with AI shoppers.") + f"""
 <div class="page wide">
   <h1>Setup guides</h1>
-  <p class="lead">Each step in order. <span class="hov">Point at a step to see what to do.</span><span class="tap">Tap a step to see what to do.</span></p>
+  <p class="lead">Each step in order. <span class="hov">Point at a step to see it large.</span><span class="tap">Tap a step to see it large.</span></p>
 {wizard("line", "Place the 6thSTAR line under your review stars", W1, W1_HELP)}
-{wizard("ai", "Share with AI shoppers", W2, W2_HELP)}
+{wizard("ai", "Share with All Shoppers", W2, W2_HELP)}
+  <div class="tzoom" aria-hidden="true"><figure><img alt=""><figcaption></figcaption></figure></div>
   <div class="cta" style="margin-top:64px">{install()}</div>
 </div>
 """ + FOOT

@@ -112,3 +112,23 @@ if (form) {
 
 /* For screenshots: ?open=1 shows MARLOW's line already open */
 if (new URLSearchParams(location.search).get("open") === "1") document.querySelectorAll(".shot[data-line]").forEach(s => s.classList.add("open"));
+
+/* ── /setup (Tracy 2026-11-27): a step opens very large while pointed at; on a phone a tap opens it and any tap closes it ── */
+const zoom = document.querySelector(".tzoom");
+if (zoom) {
+  const zi = zoom.querySelector("img"), zc = zoom.querySelector("figcaption");
+  const open = t => { const im = t.querySelector("img"); zi.src = im.src; zi.alt = im.alt;
+    /* as large as the screen allows, but never more than 1.6x the capture, so it stays clear */
+    const k = Math.min(1.6, (innerWidth * 0.9 - 40) / im.naturalWidth, (innerHeight * 0.72) / im.naturalHeight);
+    zi.style.width = Math.round(im.naturalWidth * k) + "px"; zc.innerHTML = t.querySelector(".tsay").innerHTML; zoom.classList.add("on"); };
+  const shut = () => zoom.classList.remove("on");
+  const hover = matchMedia("(hover:hover)").matches;
+  document.querySelectorAll(".tile-step").forEach(t => {
+    if (hover) { t.addEventListener("mouseenter", () => open(t)); t.addEventListener("mouseleave", shut); }
+    else t.addEventListener("click", () => open(t));
+    t.addEventListener("focus", () => { if (hover) open(t); });
+    t.addEventListener("blur", shut);
+  });
+  zoom.addEventListener("click", shut);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") shut(); });
+}
