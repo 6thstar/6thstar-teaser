@@ -132,3 +132,23 @@ if (zoom) {
   zoom.addEventListener("click", shut);
   document.addEventListener("keydown", e => { if (e.key === "Escape") shut(); });
 }
+
+/* ── Home as frames (Tracy 2026-11-27): a card on the left shows its section in the right two thirds; the address follows ── */
+const frames = document.querySelector(".frames");
+if (frames) {
+  const cards = [...frames.querySelectorAll(".fcard")], secs = [...frames.querySelectorAll(".fpanel>.sec")];
+  const wide = matchMedia("(min-width:900px)");
+  const pick = id => {
+    if (!secs.some(s => s.id === id)) id = "top";
+    secs.forEach(s => s.classList.toggle("on", s.id === id));
+    cards.forEach(c => c.classList.toggle("on", c.dataset.for === id));
+  };
+  const fromHash = () => pick((location.hash || "#top").slice(1));
+  cards.forEach(c => c.addEventListener("click", e => {
+    if (!wide.matches) return;
+    e.preventDefault(); history.replaceState(null, "", "#" + c.dataset.for); pick(c.dataset.for); scrollTo(0, 0);
+  }));
+  addEventListener("hashchange", () => { fromHash(); if (wide.matches) scrollTo(0, 0); });
+  fromHash();
+  if (wide.matches && location.hash) scrollTo(0, 0);
+}
