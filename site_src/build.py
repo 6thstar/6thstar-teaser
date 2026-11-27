@@ -114,7 +114,7 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
     </div>
   </div>
   <figure class="shot open hero-shot">
-    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow-hero.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="470"></picture>
+    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-hero-m.jpg"><img src="/assets/marlow-hero.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="455"></picture>
     <div class="line-pop">{LINE}</div></div>
     <span class="tag">Sample store, made data</span>
   </figure>
@@ -150,7 +150,8 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
       <li>You choose the channels: AI shoppers, product pages, descriptions, Instagram, Gorgias.</li>
     </ul>
   </div>
-  <div class="pic">{CHANNELS_SVG}</div>
+  <div class="pic"><div class="chan-wide">{CHANNELS_SVG}</div>
+    <div class="chan-list" aria-hidden="true"><p class="rec">Product record</p><ul><li>Product page</li><li>Description</li><li>AI shoppers <span>through Shopify</span></li><li>Open web</li><li>Instagram</li><li>Gorgias</li></ul></div></div>
 </div></section>
 
 <section class="sec" id="get"><div class="in">
@@ -174,14 +175,16 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
     <div class="acts">{install()}<a class="more" href="/demo/">Try the demo</a><a class="more" href="/setup/">See the setup guides</a></div>
     <p class="note">*Product upload time varies.</p>
   </div>
-  <figure class="pic guide-shot"><img src="/assets/guides/line-5.png" alt="The theme editor: the + just below Review stars, outlined, where the 6thSTAR line is added" width="480" height="300" loading="lazy">
-    <figcaption>Placing the line: the + just below Review stars.</figcaption></figure>
+  <figure class="pic guide-shot pair">
+    <div><img src="/assets/setup-plus.png" alt="The theme editor's panel: the + just below Review stars, outlined" width="368" height="200" loading="lazy"><p>Click the + below Review stars.</p></div>
+    <div><img src="/assets/setup-added.png" alt="The theme editor's panel: the 6thSTAR line block in place under Review stars, outlined" width="368" height="200" loading="lazy"><p>The 6thSTAR line, in place.</p></div>
+  </figure>
 </div></section>
 
 <section class="sec" id="story"><div class="in two">
   <div class="film" role="button" tabindex="0" aria-label="Watch The Whole Story, a 30-second film"
-       data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-v1-1.jpg" data-vtt="/assets/whole-story-v1-1.vtt">
-    <img src="/assets/whole-story-v1-1.jpg" alt="The Whole Story: MARLOW's product page, with the 6thSTAR line open" width="1280" height="720" loading="lazy">
+       data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-1.vtt">
+    <img src="/assets/whole-story-poster.jpg" alt="The Whole Story: the 6thSTAR line, Great trainer… runs a little narrow across the foot…" width="1280" height="720" loading="lazy">
     <span class="play">Watch The Whole Story · 30 seconds</span>
   </div>
   <div class="words">

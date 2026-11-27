@@ -282,3 +282,23 @@ body{color:#333;font-size:17.5px}
 .steps .pic{height:256px}
 .steps .pic .mini{max-width:290px}
 .sec .shot .frame{position:relative}
+
+/* v2.0.1 (review 2026-11-27): hero ends under the line; channels as a list on a phone; setup = the editor panel only */
+.hero-shot .line-pop{top:56%}
+@media (max-width:700px){.hero-shot .line-pop{top:76%}}
+.chan-list{display:none}
+@media (max-width:600px){
+  .chan-wide{display:none}
+  .chan-list{display:block;border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+  .chan-list .rec{background:var(--line-bg);border-bottom:1px solid var(--line-edge);padding:14px 18px;font-weight:500;color:#111}
+  .chan-list ul{list-style:none}
+  .chan-list li{padding:12px 18px 12px 40px;border-top:1px solid var(--rule);position:relative;color:#333}
+  .chan-list li:first-child{border-top:0}
+  .chan-list li::before{content:"";position:absolute;left:18px;top:50%;width:10px;height:1.5px;background:#bdbdbd}
+  .chan-list li span{color:#666;font-size:15px}
+}
+.guide-shot.pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule)}
+.guide-shot.pair>div{background:#fff}
+.guide-shot.pair img{width:100%}
+.guide-shot.pair p{font-size:14px;color:#555;padding:10px 12px;border-top:1px solid var(--rule)}
+@media (min-width:900px){#story .two{grid-template-columns:1.25fr 1fr}}
