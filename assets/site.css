@@ -647,3 +647,28 @@ svg text:not([fill]){fill:#111}
   .fpanel .story-big .film{max-width:calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 190px) * 16 / 9)!important}
   .fpanel .story-big h2 + .sub{margin-bottom:28px!important}
 }
+/* v3.21 (Tracy: "picture is too big. and the next headlines should be same font at NEXT") */
+@media (min-width:900px){
+  .fpanel .page-shot{width:min(100%,620px,max(420px,calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 330px) * 1200 / 500)))!important}
+  .fpanel .sec .fnext,.fpanel .sec .fnext span{font-weight:300!important}
+}
+.page-shot{max-width:620px}
+/* v3.21 (Tracy: "spacing problem"): the channel diagram is sized to the free height so it never runs under Next */
+@media (min-width:900px){
+  .fpanel #ai svg.channels{width:min(100%,600px,max(340px,calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 150px - 380px) * 520 / 400)))!important;
+    max-width:none!important;margin:20px 0 0!important;display:block}
+  .fpanel #ai .two{gap:0!important}
+}
+/* v3.21: Next in the flow, never over the content (replaces the fixed Next of v3.16) */
+@media (min-width:900px){
+  .fpanel{padding-bottom:28px!important}
+  .fpanel>.sec.on{display:flex!important;flex-direction:column;min-height:calc(100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 56px - 28px)}
+  .fpanel .sec .fnext{position:static!important;transform:none!important;left:auto!important;right:auto!important;bottom:auto!important;
+    margin:auto 0 0!important;padding:36px 0 6px!important;text-align:right;background:none!important;max-width:100%;white-space:normal}
+}
+@media (min-width:900px){.fpanel{min-height:calc(100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px))!important}}
+@media (min-width:900px){
+  .fpanel #get > .in{min-height:0!important;flex:1}
+  .fpanel #get .tiles{max-height:560px!important;grid-auto-rows:minmax(min-content,1fr)!important}
+}
+@media (min-width:900px) and (max-width:1279px){.fpanel #get .tiles{max-height:none!important}}

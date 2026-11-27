@@ -179,13 +179,15 @@ if (frames && frames.querySelector(".fpanel>.sec")) {
   });
   fromHash();
   if (wide.matches && location.hash) scrollTo(0, 0);
-  /* v3.16: the Next link sits just above the footer, its right edge in line with the section's text */
+  /* v3.21 (Tracy: "wtf" — the pinned Next covered text): the Next link sits in the page at the foot of each card,
+     pushed to the bottom of the screen when the card is short and below the content when it is long, never on top of it;
+     its right edge lines up with the card's text */
   const placeNext = () => {
-    const sec = frames.querySelector(".fpanel>.sec.on"); if (!sec || !wide.matches) return;
-    const inn = sec.querySelector(".in:last-child") || sec, a = sec.querySelector(".fnext"); if (!a) return;
-    let x = 0; for (let el = inn; el; el = el.offsetParent) x += el.offsetLeft;
-    const cs = getComputedStyle(inn);
-    a.style.left = (x + inn.offsetWidth - parseFloat(cs.paddingRight) - parseFloat(cs.borderRightWidth)) + "px";
+    frames.querySelectorAll(".fpanel>.sec").forEach(sec => {
+      const a = sec.querySelector(".fnext"); if (!a) return;
+      if (a.parentElement !== sec) sec.appendChild(a);
+      const inn = sec.querySelector(".in"); if (inn && inn.offsetWidth) a.style.width = inn.offsetWidth + "px";
+    });
   };
   placeNext();
   addEventListener("resize", placeNext); addEventListener("load", placeNext); addEventListener("hashchange", () => setTimeout(placeNext, 0));
