@@ -1,5 +1,5 @@
 {
- "version": "guides-v1-0",
+ "version": "guides-v1-1",
  "line": {
   "title": "Place the 6thSTAR line under your review stars",
   "steps": [
@@ -53,7 +53,7 @@
    }
   ],
   "help": [
-   "Don't see Review stars? Your reviews app may need to add them first. Write to <a href=\"mailto:6thstarsupport@gmail.com\">6thstarsupport@gmail.com</a>.",
+   "Don't see Review stars? Your reviews app may need to add them first. Write to <a href=\"mailto:trosen@rosengroup.us\">trosen@rosengroup.us</a>.",
    "Theme without app blocks? There's nothing to do. Your star still shows.",
    "Moved it later? 6thSTAR will tell you, and this guide will open again."
   ]

@@ -5,8 +5,7 @@ from pathlib import Path
 from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
-SUPPORT = "6thstarsupport@gmail.com"     # kept only in the setup guides' help: guides.json is shared byte for byte with the app
-CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (footer, beta thank-you, Questions)
+CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
 VERSION = "v2.0"
 
 def head(title, desc):
@@ -261,7 +260,7 @@ W1 = [
     ("Done. Back in 6thSTAR, this step shows ✓ and <b>Turn on</b> is ready.", G + "line-8.png", "The 6thSTAR Install step, Place the 6thSTAR line under your review stars, showing Done", "", ""),
 ]
 W1_HELP = [
-    f'Don\'t see Review stars? Your reviews app may need to add them first. Write to <a href="mailto:{SUPPORT}">{SUPPORT}</a>.',
+    f'Don\'t see Review stars? Your reviews app may need to add them first. Write to <a href="mailto:{CONTACT}">{CONTACT}</a>.',
     "Theme without app blocks? There's nothing to do. Your star still shows.",
     "Moved it later? 6thSTAR will tell you, and this guide will open again.",
 ]
@@ -327,7 +326,7 @@ import json
 def _g(steps, help_):
     return {"steps": [{"say": say, "img": img.rsplit("/", 1)[-1], "alt": alt, "label": label} for (say, img, alt, ph, label) in steps], "help": help_}
 (ROOT / "assets" / "guides" / "guides.json").write_text(json.dumps({
-    "version": "guides-v1-0",
+    "version": "guides-v1-1",
     "line": dict(title="Place the 6thSTAR line under your review stars", **_g(W1, W1_HELP)),
     "ai": dict(title="Share with AI shoppers", **_g(W2, W2_HELP)),
 }, ensure_ascii=False, indent=1))
