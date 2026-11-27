@@ -702,3 +702,11 @@ svg text:not([fill]){fill:#111}
   .fpanel #get .tile h3{font-size:19px!important;margin-bottom:6px}
   .fpanel #get .tile p{font-size:16.5px!important}
 }
+/* v3.24 (Tracy: "Request more information" cut off under the footer): from 1280 px, About sits beside the questions */
+@media (min-width:1280px){
+  .fpanel>#questions.sec.on{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:64px}
+  .fpanel #questions .qcols{grid-template-columns:1fr!important;display:grid}
+  .fpanel #questions .qcols>div{display:contents}
+  .fpanel #questions .in.about{margin-top:0!important;padding-top:0!important;border-top:0!important}
+  .fpanel #questions .fnext{grid-column:1 / -1;align-self:end;justify-self:end;width:auto!important}
+}
