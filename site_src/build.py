@@ -23,7 +23,7 @@ def head(title, desc):
 </head>
 <body>
 <header class="top"><div class="in">
-  <a class="brand" href="/" aria-label="6thSTAR home"><img src="/assets/6thstar-mark-96.png" alt="6thSTAR™" width="44" height="44"></a>
+  <a class="brand" href="/" aria-label="6thSTAR home"><img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"></a>
   <nav>
     <a class="txt" href="/#how">How it works</a>
     <a class="txt" href="/#ai">AI shoppers</a>
@@ -36,7 +36,7 @@ def head(title, desc):
 
 FOOT = f"""</main>
 <footer class="foot"><div class="in">
-  <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="120" height="120">
+  <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/setup/">Setup guides</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
 </div></footer>
 <script src="/assets/site.js"></script>
@@ -45,7 +45,7 @@ FOOT = f"""</main>
 """
 
 def install(cls="btn lg"):
-    return f'<a class="{cls}" data-install href="/beta/">Install 6thSTAR</a>'
+    return f'<a class="{cls}" data-install href="/beta/">Request more information</a>'
 
 LINE = "Great trainer… runs a little narrow across the foot…"
 
@@ -96,24 +96,22 @@ QS = [
     qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and <a href="/setup/#line">the guide</a> shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
     qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.'),
     qa("How long until my lines are ready?", "Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live."),
-    qa("Will it cost me sales?", "It's built not to. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would. The aim is the right sale, not fewer sales."),
+    qa("Will it cost me sales?", "No. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would."),
     qa("What happens if I uninstall?", "Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them."),
-    qa("What does the beta involve?", "A small group of Shopify stores install 6thSTAR before it's listed. We set it up with you on a call, you read your lines before anything goes live, and you tell us what you see."),
     qa("Who do I contact?", f'<a href="mailto:{CONTACT}">{CONTACT}</a>'),
 ]
 
 HOME = head("6thSTAR — Reduce returns. Build trust.",
             "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.") + f"""
 <section class="sec hero2" id="top"><div class="in intro">
-  <img class="intro-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="480" height="480">
+  <img class="intro-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <h1>Reduce Returns and Build Trust</h1>
   <p class="for">for Shopify stores</p>
 </div><div class="in two">
   <div class="words">
     <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.</p>
     <div class="acts">
-      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-1.vtt">Watch the 30-second film</button>
-      <a class="more" href="#how">See how it works ↓</a>
+      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-2.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-2.vtt">Watch the 30-second film</button>
     </div>
   </div>
   <figure class="shot open hero-shot">
@@ -170,29 +168,15 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   </div>
 </div></section>
 
-<section class="sec" id="setup"><div class="in two">
-  <div class="words">
-    <h2>Live in about 20 minutes.*</h2>
-    <p class="sub">Seven steps, each with a guide: Install · Connectors · Channels · Your creative brief · What a return costs you (optional) · Place the line under your review stars · Turn on.</p>
-    <p class="body">You read every line before anything goes live. Uninstall from 6thSTAR's Settings clears everything it added.</p>
-    <div class="acts">{install()}<a class="more" href="/demo/">Try the demo</a><a class="more" href="/setup/">See the setup guides</a></div>
-    <p class="note">*Product upload time varies.</p>
-  </div>
-  <figure class="pic guide-shot pair">
-    <div><img src="/assets/setup-plus.png" alt="The theme editor's panel: the + just below Review stars, outlined" width="368" height="200" loading="lazy"><p>Click the + below Review stars.</p></div>
-    <div><img src="/assets/setup-added.png" alt="The theme editor's panel: the 6thSTAR line block in place under Review stars, outlined" width="368" height="200" loading="lazy"><p>The 6thSTAR line, in place.</p></div>
-  </figure>
-</div></section>
-
-<section class="sec" id="story"><div class="in two">
+<section class="sec" id="story"><div class="in story-big">
   <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR, a 52-second film"
-       data-src="/assets/how-to-install-v1-0.mp4" data-poster="/assets/how-to-install-poster.jpg" data-vtt="/assets/how-to-install-v1-0.vtt">
-    <img src="/assets/how-to-install-poster.jpg" alt="How to install 6thSTAR" width="1280" height="720" loading="lazy">
+       data-src="/assets/how-to-install-v1-1.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-1.vtt">
+    <div class="poster"><img class="film-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"><p>How to install 6thSTAR</p></div>
     <span class="play">Watch how to install · 52 seconds</span>
   </div>
-  <div class="words">
-    <h2>Install 6thSTAR on your Shopify store.</h2>
-    <p class="sub">Seven steps, right inside your Shopify admin. Join the first stores in the beta.</p>
+  <div class="words cta-only">
+    <h2>Request more information.</h2>
+    <p class="sub">6thSTAR is in beta. Seven steps, right inside your Shopify admin. Join the first stores to use it.</p>
     <div class="acts">{install()}</div>
   </div>
 </div>
@@ -205,10 +189,10 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
 """ + FOOT
 
 # ── /beta ──
-BETA = head("Install 6thSTAR — beta request", "Ask to install 6thSTAR on your Shopify store.") + f"""
+BETA = head("6thSTAR — Request more information", "Request more information about 6thSTAR for your Shopify store.") + f"""
 <div class="page">
-  <h1>Install 6thSTAR on your Shopify store.</h1>
-  <p class="lead">6thSTAR is in beta. Tell us about your store, and we'll set it up with you.</p>
+  <h1>Request more information.</h1>
+  <p class="lead">6thSTAR is in beta. Tell us about your store, and we'll write to you.</p>
   <form class="beta" novalidate>
     <label>Name<input name="name" autocomplete="name" required></label>
     <label>Email<input name="email" type="email" autocomplete="email" required></label>
@@ -237,18 +221,24 @@ BETA = head("Install 6thSTAR — beta request", "Ask to install 6thSTAR on your 
 
 # ── /setup: the two wizards (words as written, MD v1.2 Part 1); screenshots to come ──
 def wizard(id_, title, steps, help_):
-    t = "\n".join(
-        f'    <template data-step data-say="{escape(say)}" data-img="{img}" data-alt="{escape(alt)}" data-ph="{escape(ph)}" data-label="{escape(label)}"></template>'
-        for (say, img, alt, ph, label) in steps)
+    """Tracy 2026-11-27: all tiles on one page, in order; pointing at a tile (tapping, on a phone) shows its detail, only while there."""
+    tiles, n = [], 0
+    for (say, img, alt, ph, label) in steps:
+        if not label:
+            n += 1
+        num = escape(label) if label else f"Step {n}"
+        tiles.append(f"""    <li class="tile-step" tabindex="0">
+      <span class="tnum">{num}</span>
+      <img src="{img}" alt="{escape(alt)}" loading="lazy">
+      <div class="tdet"><p>{say}</p><a class="tfull" href="{img}" target="_blank" rel="noopener">Full size ↗</a></div>
+    </li>""")
     h = "\n".join(f"    <p>{p}</p>" for p in help_)
     return f"""
-  <section class="wiz" id="{id_}">
-    <div class="wiz-head"><h2>{title}</h2><p class="wiz-count"></p></div>
-{t}
-    <div class="wiz-shot"></div>
-    <p class="wiz-zoom">Click the picture to see it full size.</p>
-    <p class="wiz-say" aria-live="polite"></p>
-    <div class="wiz-nav"><button class="back" type="button">Back</button><button class="next" type="button">Next</button></div>
+  <section class="gtiles" id="{id_}">
+    <h2>{title}</h2>
+    <ol class="tgrid">
+{chr(10).join(tiles)}
+    </ol>
     <div class="wiz-help">
 {h}
     </div>
@@ -285,9 +275,9 @@ W2_HELP = [
     "To undo it, set Product description back to your own description.",
 ]
 SETUP = head("6thSTAR setup guides", "Step-by-step guides: place the 6thSTAR line, and share with AI shoppers.") + f"""
-<div class="page">
+<div class="page wide">
   <h1>Setup guides</h1>
-  <p class="lead">Do each step in your own Shopify, then click Next.</p>
+  <p class="lead">Each step in order. <span class="hov">Point at a step to see what to do.</span><span class="tap">Tap a step to see what to do.</span></p>
 {wizard("line", "Place the 6thSTAR line under your review stars", W1, W1_HELP)}
 {wizard("ai", "Share with AI shoppers", W2, W2_HELP)}
   <div class="cta" style="margin-top:64px">{install()}</div>

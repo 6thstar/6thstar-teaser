@@ -316,3 +316,43 @@ body{color:#333;font-size:17.5px}
 .cta-only{text-align:center}
 .cta-only .sub{margin-left:auto;margin-right:auto}
 .cta-only .acts{justify-content:center}
+
+/* ── /setup v2 (Tracy 2026-11-27): every step a tile on one page, in order; the detail shows only while pointed at (or tapped) ── */
+.page.wide{max-width:1168px}
+.lead .tap{display:none}
+@media (hover:none){.lead .hov{display:none}.lead .tap{display:inline}}
+.gtiles{margin-top:48px}
+.gtiles + .gtiles{margin-top:80px}
+.gtiles h2{font-size:clamp(24px,3vw,32px);margin-bottom:20px}
+.tgrid{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media (max-width:1000px){.tgrid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.tgrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.tgrid{grid-template-columns:1fr}}
+.tile-step{position:relative;border:1px solid var(--rule);border-radius:12px;background:#fff;overflow:hidden;aspect-ratio:4/3;outline:none;cursor:default}
+.tile-step img{width:100%;height:100%;object-fit:contain;padding:34px 10px 10px;background:#fff}
+.tnum{position:absolute;top:8px;left:10px;font:500 13px "Roboto",sans-serif;color:#fff;background:var(--gold);border-radius:999px;padding:3px 10px;z-index:1}
+.tdet{position:absolute;inset:0;background:rgba(255,255,255,.97);padding:44px 16px 14px;display:flex;flex-direction:column;justify-content:center;gap:10px;
+  opacity:0;visibility:hidden;transition:opacity .15s}
+.tdet p{font-size:17px;line-height:1.45;color:var(--ink);font-weight:400}
+.tdet a{text-underline-offset:3px}
+.tfull{font-size:14px;color:var(--muted)}
+@media (hover:hover){.tile-step:hover .tdet{opacity:1;visibility:visible}}
+.tile-step:focus-visible .tdet{opacity:1;visibility:visible}
+.tile-step:focus-visible{box-shadow:0 0 0 2px var(--gold)}
+@media (hover:none){.tile-step:focus .tdet,.tile-step:focus-within .tdet{opacity:1;visibility:visible}}
+.gtiles .wiz-help{margin-top:16px;border:1px solid var(--rule);border-radius:12px;padding:16px 20px}
+
+/* ── The mark (Tracy 2026-11-27): the footer's size, every time, at every width ── */
+.brand,.brand img,.foot img,.intro-mark{flex-shrink:0}
+.brand img,.foot img,.intro-mark{width:72px!important;height:72px!important}
+.intro-mark{margin:0 auto 10px}
+
+/* ── Section 7 (Tracy 2026-11-27): the install film at full content width, crisp; the request below it ── */
+.story-big .film{max-width:none;width:100%;margin:0}
+.story-big .film img{image-rendering:auto}
+.story-big .words{margin-top:40px}
+.story-big .film .play{font-size:17px}
+/* the film's cover is page text and the mark (72 px), so it is sharp at every width */
+.story-big .poster{aspect-ratio:16/9;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.story-big .poster p{font-size:clamp(24px,3.4vw,44px);font-weight:300;color:var(--ink)}
+.film-mark{width:72px!important;height:72px!important;flex-shrink:0}

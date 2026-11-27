@@ -1,7 +1,7 @@
 /* 6thSTAR site v1.1 */
 
 /* ── The one action. A single switch: set LISTING_APPROVED to true and fill LISTING_URL
-      once Shopify approves the listing. Until then every "Install 6thSTAR" opens /beta/. ── */
+      once Shopify approves the listing. Until then every "Request more information" button opens /beta/. ── */
 const SITE = {
   LISTING_APPROVED: false,
   LISTING_URL: "",              /* the Shopify App Store listing, once approved */
