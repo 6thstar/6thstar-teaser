@@ -601,3 +601,9 @@ svg text:not([fill]){fill:#111}
   .fth svg{max-height:36px}
   .fth-q{font-size:24px}
 }
+/* v3.16 (Tracy: "the next headline should sit right above the footer right justified on each screen") */
+@media (min-width:900px){
+  .fpanel .sec .fnext{position:fixed;z-index:55;bottom:var(--foot,98px);right:auto;transform:translateX(-100%);margin:0;
+    padding:14px 0 18px 28px;border-top:0;background:#fff}
+  .fpanel{padding-bottom:150px!important}
+}

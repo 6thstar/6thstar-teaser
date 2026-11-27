@@ -179,6 +179,17 @@ if (frames && frames.querySelector(".fpanel>.sec")) {
   });
   fromHash();
   if (wide.matches && location.hash) scrollTo(0, 0);
+  /* v3.16: the Next link sits just above the footer, its right edge in line with the section's text */
+  const placeNext = () => {
+    const sec = frames.querySelector(".fpanel>.sec.on"); if (!sec || !wide.matches) return;
+    const inn = sec.querySelector(".in:last-child") || sec, a = sec.querySelector(".fnext"); if (!a) return;
+    let x = 0; for (let el = inn; el; el = el.offsetParent) x += el.offsetLeft;
+    const cs = getComputedStyle(inn);
+    a.style.left = (x + inn.offsetWidth - parseFloat(cs.paddingRight) - parseFloat(cs.borderRightWidth)) + "px";
+  };
+  placeNext();
+  addEventListener("resize", placeNext); addEventListener("load", placeNext); addEventListener("hashchange", () => setTimeout(placeNext, 0));
+  frames.querySelectorAll(".fcard,.fnext").forEach(c => c.addEventListener("click", () => setTimeout(placeNext, 0)));
 }
 
 /* ── Tracy 2026-11-27: "keep the phrase on one line". Each 6thSTAR line in a picture stays on one line, as large as fits

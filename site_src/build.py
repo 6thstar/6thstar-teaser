@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.15"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.16"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -48,7 +48,7 @@ def head(title, desc):
 FOOT = f"""</main>
 <footer class="foot"><div class="in">
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
-  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
+  <nav><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
   <span class="copy">&copy; 2026 Rosengroup, LLC</span>
   <span class="ver">Version {VERSION[1:]}</span>
 </div></footer>
@@ -107,7 +107,7 @@ def qa(q, a):
 QS = [
     qa("What appears on my page?", "A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes."),
     qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and 6thSTAR\'s setup guide shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
-    qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.'),
+    qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address.'),
     qa("How long until my lines are ready?", "Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live."),
     qa("Will it cost me sales?", "No. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would."),
     qa("What happens if I uninstall?", "Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them."),
@@ -378,7 +378,7 @@ print("wrote robots.txt, sitemap.xml")
     '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>')))
 
 # the not-found page is never listed by search engines
-# Terms and Privacy are placeholders until their final text (before submission): held back from search, still linked in the footer
+# Terms and Privacy are placeholders until their final text (before submission): held back from search and, for now, not linked anywhere (Tracy 2026-11-27: "remove terms and privacy for now")
 for _p in ("terms/index.html", "privacy/index.html"):
     _f = ROOT / _p
     _f.write_text(_f.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
