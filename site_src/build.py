@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.5"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.6"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -16,6 +16,18 @@ def head(title, desc):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="6thSTAR">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="https://6thstar.us/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Reduce Returns and Build Trust, for Shopify stores: the 6thSTAR line on a product page">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="https://6thstar.us/assets/og-image.jpg">
 <link rel="icon" href="/assets/6thstar-mark-96.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/roboto-300-500.woff" as="font" type="font/woff" crossorigin>
@@ -346,15 +358,30 @@ BETA, TERMS, PRIVACY, DEMO = framed(BETA), framed(TERMS), framed(PRIVACY), frame
 PAGES = {"index.html": HOME, "beta/index.html": BETA,
          "terms/index.html": TERMS, "privacy/index.html": PRIVACY, "demo/index.html": DEMO}
 
+SITE_URL = "https://6thstar.us"
 for path, html in PAGES.items():
     p = ROOT / path
     p.parent.mkdir(parents=True, exist_ok=True)
+    url = SITE_URL + "/" + path.replace("index.html", "")
+    # one address per page for search engines and link previews (www and http show the same page)
+    html = html.replace("</head>", f'<link rel="canonical" href="{url}">\n<meta property="og:url" content="{url}">\n</head>', 1)
     p.write_text(html)
     print("wrote", path, len(html))
+
+import datetime
+(ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n")
+_today = datetime.date.today().isoformat()
+(ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
+    f"  <url><loc>{SITE_URL}/{u}</loc><lastmod>{_today}</lastmod></url>\n" for u in ("", "beta/", "terms/", "privacy/")) + "</urlset>\n")
+print("wrote robots.txt, sitemap.xml")
 
 # 404 page for the static site
 (ROOT / "404.html").write_text(framed(placeholder("6thSTAR", "Page not found.", "Page not found",
     '<p class="lead">That page isn\'t here. <a href="/">Go to the home page</a>.</p>')))
+
+# the not-found page is never listed by search engines
+_nf = ROOT / "404.html"
+_nf.write_text(_nf.read_text().replace("</head>", '<meta name="robots" content="noindex">\n</head>', 1))
 
 # The same guides, for the 6thSTAR app (CC_MD v1.2: "Build them once, with the same screens and words in both places").
 # The app copies assets/guides/guides.json and the shots into shopify_poc/mvp/guides/.
