@@ -111,7 +111,7 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   <div class="words">
     <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.</p>
     <div class="acts">
-      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-2.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-2.vtt">Watch the 30-second film</button>
+      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-3.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-3.vtt">Watch the 30-second film</button>
     </div>
   </div>
   <figure class="shot open hero-shot">
