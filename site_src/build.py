@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.8"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.9"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -75,10 +75,10 @@ SOURCES_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="
 </svg>"""
 
 POINT_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="The one point: runs a little narrow across the foot">
-  <circle cx="44" cy="100" r="13" fill="#ff9900"/>
-  <path d="M57 100 L 88 100" stroke="#bdbdbd" stroke-width="1.5"/>
-  <rect x="88" y="62" width="224" height="76" rx="12" fill="#fff8ec" stroke="#d9c39b"/>
-  <g font-family="Roboto, sans-serif" fill="#1d1d1d"><text x="104" y="93" font-size="15">Runs a little narrow</text><text x="104" y="116" font-size="15">across the foot</text></g>
+  <circle cx="40" cy="100" r="13" fill="#ff9900"/>
+  <path d="M53 100 L 70 100" stroke="#bdbdbd" stroke-width="1.5"/>
+  <rect x="70" y="80" width="244" height="40" rx="12" fill="#fff8ec" stroke="#d9c39b"/>
+  <g font-family="Roboto, sans-serif" fill="#1d1d1d"><text x="82" y="105" font-size="12.5">Runs a little narrow across the foot</text></g>
 </svg>"""
 
 CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" aria-label="The product record in the centre, with lines out to the product page, the description, AI shoppers through Shopify, the open web, Instagram and Gorgias">
@@ -122,7 +122,7 @@ CARDS = [
     ("how", "<em>1</em><em>2</em><em>3</em>", "fth-how", "One true phrase, at the moment shoppers decide"),
     ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your product's truth, everywhere it's read"),
     ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
-    ("story", "<b></b>", "fth-film", "How to install · Request more information"),
+    ("story", "<b></b>", "fth-film", "How to install"),
     ("questions", "?", "fth-q", "Questions"),
     ("about", "&ldquo;", "fth-q fth-about", "About 6thSTAR"),
 ]
@@ -209,11 +209,6 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     <div class="poster"><img class="film-mark" src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72"><p>How to install 6thSTAR</p></div>
     <span class="play">Watch how to install</span>
   </div>
-  <div class="words cta-only">
-    <h2>Request more information.</h2>
-    <p class="sub">6thSTAR is in beta. Seven steps, right inside your Shopify admin. Join the first stores to use it.</p>
-    <div class="acts">{install()}</div>
-  </div>
 </div></section>
 
 <section class="sec" id="questions"><div class="in faq2">
@@ -225,6 +220,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
   <h2>About 6thSTAR</h2>
   <p class="about-text">I've spent nearly fifty years in retail, and the costliest returns I've seen weren't defects. They were surprises. Every shopper buys an expectation first, formed in seconds from a photo, the stars and a price. Then the product arrives, and that expectation meets lived reality. When the two match, the shopper keeps it and trusts the store. When they don't, the box comes back, even when nothing is wrong. I built 6thSTAR to close that gap before the sale. I'm confident it will work because disappointment is always measured against expectation. Get the expectation right, and trust follows.</p>
   <p class="about-sig">Tracy Rosen, founder</p>
+  <p class="about-date">November, 2026</p>
 </div></section>
 </div></div>
 

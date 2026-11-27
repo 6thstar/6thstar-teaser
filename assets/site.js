@@ -170,3 +170,27 @@ if (frames && frames.querySelector(".fpanel>.sec")) {
   fromHash();
   if (wide.matches && location.hash) scrollTo(0, 0);
 }
+
+/* ── Tracy 2026-11-27: "keep the phrase on one line". Each 6thSTAR line in a picture stays on one line, as large as fits
+      (up to its normal size) within its picture: the hero line in the column under the stars, widening over the photo only if needed ── */
+const fitLines = () => document.querySelectorAll(".shot .line-pop").forEach(el => {
+  const frame = el.closest(".frame") || el.parentElement;
+  if (!frame.offsetWidth) return;
+  const hero = !!el.closest(".hero-shot");
+  const wide = matchMedia("(min-width:701px)").matches;
+  const room = frame.clientWidth * (hero && wide ? 0.96 : 0.94);
+  let size = hero ? 16 : 14;
+  el.style.setProperty("font-size", size + "px", "important");
+  while (el.offsetWidth > room && size > 7) { size -= 0.5; el.style.setProperty("font-size", size + "px", "important"); }
+});
+addEventListener("load", fitLines); addEventListener("resize", fitLines);
+document.querySelectorAll(".fcard,.fnext").forEach(a => a.addEventListener("click", () => setTimeout(fitLines, 0)));
+addEventListener("hashchange", () => setTimeout(fitLines, 0));
+
+/* ── Request more information: a small icon at the bottom right of every section (Tracy 2026-11-27) ── */
+document.querySelectorAll(".fpanel>.sec").forEach(sec => {
+  const a = document.createElement("a");
+  a.className = "reqi"; a.href = INSTALL_HREF; a.setAttribute("aria-label", "Request more information"); a.title = "Request more information";
+  a.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+  sec.appendChild(a);
+});

@@ -515,3 +515,34 @@ body{color:#333;font-size:17.5px}
 @media (max-width:700px){.foot .ver{margin-left:0;width:100%}}
 /* Tracy 2026-11-27: the Next link stays on one line (it was a flex box, so its words wrapped as a block) */
 @media (min-width:900px){.fnext{display:inline-block;white-space:nowrap;max-width:100%}.fnext span{margin-right:10px}}
+
+/* v3.9 (Tracy 2026-11-27: "keep the phrase on one line"): the 6thSTAR line never wraps; site.js sizes it to fit its picture */
+.hero-shot .line-pop,.mini .line-pop,.steps .mini .line-pop{white-space:nowrap!important;width:auto!important;max-width:none!important;padding:.6em .8em!important}
+.hero-shot .line-pop{left:auto!important;right:2%!important}
+.mini .line-pop,.steps .mini .line-pop{left:3%!important;right:auto!important}
+@media (max-width:700px){.hero-shot .line-pop{right:auto!important;left:3%!important}}
+.about-date{margin-top:4px;font-size:15px!important;color:#666}
+
+/* v3.9: the hero picture gets its full column (the words' min-content was squeezing it to ~270 px) */
+@media (min-width:900px){.fpanel .hero2 .two{grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr)}}
+/* the step 3 picture uses its whole tile, so its line stays readable on one line */
+.steps .pic .mini,.fpanel .steps .pic .mini{max-width:100%!important;width:100%}
+@media (min-width:900px) and (max-width:1199px){
+  .fpanel .steps{grid-template-columns:1fr;gap:22px}
+  .fpanel .steps li{display:grid;grid-template-columns:300px minmax(0,1fr);gap:0 22px;align-items:start}
+  .fpanel .steps .pic{grid-row:span 2;height:180px;margin:0}
+}
+@media (max-width:899px){
+  .steps li{display:block!important}
+  .steps .pic{height:auto!important;min-height:160px;margin:0 0 14px!important}
+}
+
+/* Request more information: a small icon at the bottom right of every section (Tracy 2026-11-27), not in the left column */
+.fpanel>.sec{position:relative}
+.reqi{position:absolute;right:0;bottom:0;width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);background:#fff;
+  display:grid;place-items:center;color:#111;text-decoration:none;transition:background .12s}
+.reqi:hover{background:#fff4e0}
+.reqi svg{width:22px;height:22px}
+.reqi::after{content:attr(aria-label);position:absolute;right:54px;white-space:nowrap;font-size:14px;color:#333;opacity:0;transition:opacity .12s;pointer-events:none}
+.reqi:hover::after,.reqi:focus-visible::after{opacity:1}
+@media (max-width:899px){.fpanel>.sec{padding-bottom:64px!important}.reqi{right:var(--gutter);bottom:14px}}
