@@ -165,3 +165,120 @@ form.beta .opt{font-weight:300;color:var(--muted);font-size:14px}
 /* The beta form: the hidden field a person never sees, and a plain error line */
 form.beta .trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .formerr{color:#b42318;font-size:15px}
+
+/* ── v2.0 (6thSTAR_Website_Script_v2_0): dense and clear. ~1120 px content, ~96 px between sections (56 on a phone),
+   headline 40–48, sub-head 20–22, body 17–18 in #333. The line is always open in pictures. ── */
+:root{--max:1120px}
+body{color:#333;font-size:17.5px}
+.lead{color:#333}
+.top nav{gap:26px}
+.top nav a.txt{color:#333;font-size:15px}
+@media (max-width:560px){.top nav{gap:14px}.top nav a.txt{display:inline;font-size:13px}.brand img{width:36px;height:36px}}
+@media (max-width:380px){.top nav{gap:10px}.top nav a.txt{font-size:12px}}
+
+.sec{padding:48px var(--gutter)}
+.sec:first-of-type{padding-top:72px}
+.sec .in{max-width:var(--max);margin:0 auto;width:100%}
+.sec + .sec{border-top:1px solid var(--rule);margin-top:48px;padding-top:96px}
+.sec h1{font-size:clamp(36px,4.2vw,52px);font-weight:400;color:#111;letter-spacing:-.02em}
+.sec h2{font-size:clamp(30px,3.3vw,46px);font-weight:400;color:#111;letter-spacing:-.015em;line-height:1.15}
+.sec h3{font-size:19px;font-weight:500;color:#111;line-height:1.3}
+.sec p{color:#333}
+.sub{font-size:clamp(19px,1.7vw,22px);color:#333;margin-top:16px;max-width:760px;line-height:1.5}
+.body{margin-top:16px}
+.kicker{font-size:15px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:12px}
+.two{display:grid;grid-template-columns:1fr;gap:36px;align-items:center}
+@media (min-width:900px){.two{grid-template-columns:1fr 1.15fr;gap:56px}}
+.acts{margin-top:28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.more{color:#111;text-underline-offset:4px;text-decoration-color:var(--gold);text-decoration-thickness:1.5px;font-weight:400}
+.playlink{display:inline-flex;align-items:center;gap:10px;font:400 17px "Roboto",sans-serif;color:#fff;background:#111;border:0;border-radius:999px;padding:12px 22px 12px 18px;cursor:pointer}
+.playlink::before{content:"";border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.playlink:hover{background:#333}
+
+/* The pictures: the line open, never behind a hover */
+.sec .shot{margin:0;max-width:none}
+.hero-shot .line-pop,.mini .line-pop{opacity:1;transform:none;white-space:normal;max-width:none}
+.hero-shot .line-pop{left:58.6%;top:54%;width:39.5%;font-size:clamp(12px,1.05vw,15px);padding:10px 13px;line-height:1.4}
+.hero-shot .tag{top:auto;bottom:10px;left:10px;right:auto}
+@media (max-width:700px){.hero-shot .line-pop{left:4%;right:4%;width:auto;top:44%;font-size:15px}.hero-shot .tag{top:10px;right:10px;bottom:auto;left:auto}}
+.mini{border-radius:10px}
+.mini .line-pop{left:3%;top:76%;width:auto;right:4%;font-size:13px;padding:7px 10px;line-height:1.35}
+.mini .tag{top:8px;right:8px;bottom:auto;left:auto;font-size:11px;padding:3px 9px}
+
+/* Section 2: three columns */
+.cols3{display:grid;grid-template-columns:1fr;gap:28px;margin-top:40px}
+.cols3>div{border-top:2px solid var(--gold);padding-top:18px}
+.cols3 p{margin-top:8px}
+@media (min-width:800px){.cols3{grid-template-columns:repeat(3,1fr);gap:40px}}
+
+/* Section 3: three steps across, each with a small picture */
+.steps{list-style:none;display:grid;grid-template-columns:1fr;gap:36px;margin-top:44px}
+@media (min-width:860px){.steps{grid-template-columns:repeat(3,1fr);gap:36px}}
+.steps .pic{height:210px;display:flex;align-items:center;justify-content:center;background:#fafaf8;border:1px solid var(--rule);border-radius:12px;padding:12px;margin-bottom:18px;overflow:hidden}
+.steps .pic .mini{width:100%;max-width:330px}
+.steps h3 span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#111;color:#fff;font-size:14px;margin-right:10px;vertical-align:2px}
+.steps p{margin-top:8px}
+.draw{width:100%;height:auto;max-height:190px}
+.draw.channels{max-height:none}
+
+/* Section 4: ticks */
+.ticks{list-style:none;margin-top:22px}
+.ticks li{position:relative;padding:12px 0 12px 30px;border-top:1px solid var(--rule)}
+.ticks li:last-child{border-bottom:1px solid var(--rule)}
+.ticks li::before{content:"";position:absolute;left:4px;top:21px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+
+/* Section 5: six tiles */
+.tiles{display:grid;grid-template-columns:1fr;gap:16px;margin-top:40px}
+@media (min-width:640px){.tiles{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.tiles{grid-template-columns:repeat(3,1fr);gap:20px}}
+.tile{border:1px solid var(--rule);border-radius:14px;padding:24px 24px 26px;background:#fff}
+.tile p{margin-top:8px}
+
+/* Section 6: the guide's own shot */
+.guide-shot{margin:0;border:1px solid var(--rule);border-radius:12px;overflow:hidden;background:#fff}
+.guide-shot img{width:100%}
+.guide-shot figcaption{font-size:14px;color:#555;padding:10px 14px;border-top:1px solid var(--rule)}
+
+/* Section 7: the film beside the call; Questions in two columns */
+.sec .film{margin:0;max-width:none}
+.faq2{margin-top:72px}
+.qh{font-size:clamp(26px,2.6vw,34px)!important}
+.qcols{display:grid;grid-template-columns:1fr;gap:0 40px;margin-top:18px}
+@media (min-width:860px){.qcols{grid-template-columns:1fr 1fr}}
+.qcols details{border-top:1px solid var(--rule)}
+.qcols>div details:last-child{border-bottom:1px solid var(--rule)}
+.qcols summary{list-style:none;cursor:pointer;padding:16px 34px 16px 0;font-size:18px;font-weight:400;color:#111;position:relative}
+.qcols summary::-webkit-details-marker{display:none}
+.qcols summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:24px;font-weight:300;color:#666}
+.qcols details[open] summary::after{content:"–"}
+.qcols details p{padding:0 0 18px}
+
+/* The spot, opened from the hero: plays only after the click */
+.filmbox{border:0;padding:0;background:#000;border-radius:12px;width:min(1000px,94vw);overflow:visible}
+.filmbox::backdrop{background:rgba(0,0,0,.72)}
+.filmbox video{width:100%;display:block;border-radius:12px}
+.filmbox .x{position:absolute;top:-44px;right:0;background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer}
+
+/* Footer: the mark, then the links */
+.foot img{width:72px;height:72px}
+.foot .in{justify-content:flex-start;gap:28px}
+
+@media (max-width:700px){
+  .sec{padding:32px var(--gutter)}
+  .sec:first-of-type{padding-top:40px}
+  .sec + .sec{margin-top:24px;padding-top:56px}
+  .faq2{margin-top:48px}
+}
+/* v2.0 fixes after the first screenshots: the tag sits under the picture (never over the title); Questions clear of the film;
+   a larger hero picture */
+.sec .shot .tag{position:static;display:inline-block;margin:8px 10px}
+.sec .shot{background:#fff}
+.steps .pic{height:230px}
+.steps .pic .mini{max-width:300px}
+.sec .faq2{margin-top:88px}
+@media (min-width:900px){.hero2 .two{grid-template-columns:.85fr 1.3fr;gap:48px}}
+.hero2{padding-bottom:56px}
+@media (max-width:700px){.sec .faq2{margin-top:56px}}
+.steps .pic{height:256px}
+.steps .pic .mini{max-width:290px}
+.sec .shot .frame{position:relative}

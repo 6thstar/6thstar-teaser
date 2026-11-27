@@ -6,7 +6,7 @@ const SITE = {
   LISTING_APPROVED: false,
   LISTING_URL: "",              /* the Shopify App Store listing, once approved */
   BETA_URL: "/beta/",
-  SUPPORT: "6thstarsupport@gmail.com",
+  SUPPORT: "trosen@rosengroup.us",          /* Script v2.0: the contact email, for now */
   BETA_ENDPOINT: "https://sixthstar-app-y2dab.ondigitalocean.app/beta-request",   /* the 6thSTAR app keeps and emails each request */
 };
 const INSTALL_HREF = (SITE.LISTING_APPROVED && SITE.LISTING_URL) ? SITE.LISTING_URL : SITE.BETA_URL;
@@ -31,6 +31,24 @@ document.querySelectorAll(".film[data-src]").forEach(box => {
   box.addEventListener("click", start);
   box.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); start(); } });
 });
+
+/* ── The spot from the hero (Script v2.0): opens in a box and plays only after the click; closing stops it ── */
+const box = document.querySelector("dialog.filmbox");
+document.querySelectorAll("[data-film-open]").forEach(b => b.addEventListener("click", () => {
+  if (!box || !box.showModal) { location.href = b.dataset.src; return; }
+  const v = document.createElement("video");
+  v.src = b.dataset.src; v.controls = true; v.playsInline = true;
+  if (b.dataset.poster) v.poster = b.dataset.poster;
+  if (b.dataset.vtt) { const t = document.createElement("track"); t.kind = "captions"; t.srclang = "en"; t.label = "English"; t.src = b.dataset.vtt; v.appendChild(t); }
+  box.querySelector(".slot").replaceChildren(v);
+  box.showModal(); v.play().catch(() => {});
+}));
+if (box) {
+  const shut = () => { const v = box.querySelector("video"); if (v) v.pause(); box.querySelector(".slot").replaceChildren(); };
+  box.addEventListener("close", shut);
+  box.querySelector(".x").addEventListener("click", () => box.close());
+  box.addEventListener("click", e => { if (e.target === box) box.close(); });
+}
 
 /* ── MARLOW: the star opens the line on hover, focus or tap ── */
 document.querySelectorAll(".shot[data-line]").forEach(shot => {

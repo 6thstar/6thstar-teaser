@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""6thSTAR site v1.1 (CC_MD_Website_And_Setup_Wizards_v1_2). Writes every page from one header and footer.
+"""6thSTAR site v2.0 (Home: 6thSTAR_Website_Script_v2_0; /setup, /beta, /terms, /privacy, /demo as CC_MD_Website_And_Setup_Wizards_v1_2). Writes every page from one header and footer.
 Run from the repo root: python3 site_src/build.py"""
 from pathlib import Path
 from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
-SUPPORT = "6thstarsupport@gmail.com"
-VERSION = "v1.1"
+SUPPORT = "6thstarsupport@gmail.com"     # kept only in the setup guides' help: guides.json is shared byte for byte with the app
+CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (footer, beta thank-you, Questions)
+VERSION = "v2.0"
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -25,9 +26,10 @@ def head(title, desc):
 <header class="top"><div class="in">
   <a class="brand" href="/" aria-label="6thSTAR home"><img src="/assets/6thstar-mark-96.png" alt="6thSTAR™" width="44" height="44"></a>
   <nav>
-    <a class="txt" href="/setup/">Setup guides</a>
-    <a class="txt" href="/demo/">Demo</a>
-    <a class="btn sm" data-install href="/beta/">Install 6thSTAR</a>
+    <a class="txt" href="/#how">How it works</a>
+    <a class="txt" href="/#ai">AI shoppers</a>
+    <a class="txt" href="/setup/">Setup</a>
+    <a class="txt" href="/#questions">Questions</a>
   </nav>
 </div></header>
 <main>
@@ -35,8 +37,8 @@ def head(title, desc):
 
 FOOT = f"""</main>
 <footer class="foot"><div class="in">
-  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:{SUPPORT}">{SUPPORT}</a></nav>
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="120" height="120">
+  <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/setup/">Setup guides</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
 </div></footer>
 <script src="/assets/site.js"></script>
 </body>
@@ -48,124 +50,153 @@ def install(cls="btn lg"):
 
 LINE = "Great trainer… runs a little narrow across the foot…"
 
-# ── Home: the ten beats, words as written (MD v1.2 Part 2); images only the four named ──
-HOME = head("6thSTAR — Reduce Returns and Build Trust",
-            "One short phrase, at the moment shoppers decide. A Shopify app.") + f"""
-<section class="beat hero" id="hook"><div class="in hero-grid">
-  <div class="hero-words">
-  <h1>Reduce Returns and Build Trust</h1>
-  <p class="lead">One short phrase, at the moment shoppers decide.</p>
-  <div class="cta">{install()}</div>
+# ── Home v2.0: seven sections, dense, words as written (6thSTAR_Website_Script_v2_0). No install button until section 6. ──
+SOURCES_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="Three sources, your product page, reviews and returns, feeding one point">
+  <g font-family="Roboto, sans-serif" font-size="15" fill="#333">
+    <rect x="8" y="14" width="118" height="40" rx="10" fill="#fff" stroke="#cfcfcf"/><text x="67" y="39" text-anchor="middle">Product page</text>
+    <rect x="8" y="80" width="118" height="40" rx="10" fill="#fff" stroke="#cfcfcf"/><text x="67" y="105" text-anchor="middle">Reviews</text>
+    <rect x="8" y="146" width="118" height="40" rx="10" fill="#fff" stroke="#cfcfcf"/><text x="67" y="171" text-anchor="middle">Returns</text>
+  </g>
+  <g fill="none" stroke="#bdbdbd" stroke-width="1.5">
+    <path d="M126 34 C 200 34, 210 100, 262 100"/><path d="M126 100 L 262 100"/><path d="M126 166 C 200 166, 210 100, 262 100"/>
+  </g>
+  <circle cx="274" cy="100" r="13" fill="#ff9900"/>
+</svg>"""
+
+POINT_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="The one point: runs a little narrow across the foot">
+  <circle cx="44" cy="100" r="13" fill="#ff9900"/>
+  <path d="M57 100 L 88 100" stroke="#bdbdbd" stroke-width="1.5"/>
+  <rect x="88" y="62" width="224" height="76" rx="12" fill="#fff8ec" stroke="#d9c39b"/>
+  <g font-family="Roboto, sans-serif" fill="#1d1d1d"><text x="104" y="93" font-size="15">Runs a little narrow</text><text x="104" y="116" font-size="15">across the foot</text></g>
+</svg>"""
+
+CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" aria-label="The product record in the centre, with lines out to the product page, the description, AI shoppers through Shopify, the open web, Instagram and Gorgias">
+  <g stroke="#bdbdbd" stroke-width="1.5" fill="none">
+    <path d="M260 200 L 92 64"/><path d="M260 200 L 428 64"/><path d="M260 200 L 52 200"/><path d="M260 200 L 468 200"/><path d="M260 200 L 92 336"/><path d="M260 200 L 428 336"/>
+  </g>
+  <g font-family="Roboto, sans-serif" font-size="16" fill="#333" text-anchor="middle">
+    <rect x="12" y="42" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="92" y="69">Product page</text>
+    <rect x="348" y="42" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="428" y="69">Description</text>
+    <rect x="2" y="178" width="140" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="72" y="205">Open web</text>
+    <rect x="378" y="166" width="140" height="68" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="448" y="195">AI shoppers</text><text x="448" y="216" font-size="13" fill="#555">through Shopify</text>
+    <rect x="12" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="92" y="341">Instagram</text>
+    <rect x="348" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="428" y="341">Gorgias</text>
+    <rect x="170" y="158" width="180" height="84" rx="14" fill="#fff8ec" stroke="#d9c39b"/>
+    <text x="260" y="195" font-size="18" font-weight="500" fill="#1d1d1d">Product record</text><text x="260" y="220" font-size="14" fill="#555">your product's truth</text>
+  </g>
+</svg>"""
+
+def tile(b, line):
+    return f'<div class="tile"><h3>{b}</h3><p>{line}</p></div>'
+
+def qa(q, a):
+    return f'<details><summary>{q}</summary><p>{a}</p></details>'
+
+QS = [
+    qa("What appears on my page?", "A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes."),
+    qa("Which themes work?", 'Themes with app blocks, such as Shopify\'s own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and <a href="/setup/#line">the guide</a> shows each click. On a theme without app blocks there\'s nothing to place; your star still shows.'),
+    qa("What data does it read?", 'Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn\'t ask Shopify for a buyer\'s name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.'),
+    qa("How long until my lines are ready?", "Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live."),
+    qa("Will it cost me sales?", "It's built not to. Each line first confirms the shopper's choice, then adds the one thing worth knowing, the way a friend would. The aim is the right sale, not fewer sales."),
+    qa("What happens if I uninstall?", "Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them."),
+    qa("What does the beta involve?", "A small group of Shopify stores install 6thSTAR before it's listed. We set it up with you on a call, you read your lines before anything goes live, and you tell us what you see."),
+    qa("Who do I contact?", f'<a href="mailto:{CONTACT}">{CONTACT}</a>'),
+]
+
+HOME = head("6thSTAR — Reduce returns. Build trust.",
+            "6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.") + f"""
+<section class="sec hero2" id="top"><div class="in two">
+  <div class="words">
+    <h1>Reduce returns. Build trust.</h1>
+    <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.</p>
+    <div class="acts">
+      <button class="playlink" type="button" data-film-open data-src="/assets/spot-v2-8.mp4" data-poster="/assets/spot-v2-8.jpg" data-vtt="/assets/spot-v2-8.vtt">Watch the 30-second spot</button>
+      <a class="more" href="#how">See how it works ↓</a>
+    </div>
   </div>
-  <div class="film" role="button" tabindex="0" aria-label="Watch the 30-second spot"
-       data-src="/assets/spot-v2-8.mp4" data-poster="/assets/spot-v2-8.jpg" data-vtt="/assets/spot-v2-8.vtt">
-    <img src="/assets/spot-v2-8.jpg" alt="The 30-second spot: the 6thSTAR mark, Reduce Returns and Build Trust" width="1280" height="720" loading="lazy">
-    <span class="play">Watch the 30-second spot</span>
-  </div>
+  <figure class="shot open hero-shot">
+    <div class="frame"><picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow-hero.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample: the photo, the title, the review stars, and the 6thSTAR line open under them" width="1200" height="470"></picture>
+    <div class="line-pop">{LINE}</div></div>
+    <span class="tag">Sample store, made data</span>
+  </figure>
 </div></section>
 
-<section class="beat narrow" id="surprise"><div class="in">
+<section class="sec" id="why"><div class="in">
   <h2>Most returns start with a surprise.</h2>
-  <p class="lead">The product was fine. The expectation wasn't. And by the time the box comes back, the margin is gone.</p>
-</div></section>
-
-<section class="beat narrow" id="seconds"><div class="in">
-  <h2>Shoppers decide in seconds.</h2>
-  <p class="lead">The photo, the stars and the price form an impression before a word is read. It happens fast and automatically, in every visit.</p>
-  <p class="lead">That impression becomes the expectation. Whatever arrives is judged against it.</p>
-</div></section>
-
-<section class="beat" id="moment"><div class="in">
-  <div class="center">
-    <h2>There's one moment that matters.</h2>
-    <p class="lead">It comes just before the shopper relies on that impression and decides. After it, the expectation has hardened. Before it, one true thing can still shape it.</p>
-    <p class="speaks">That's when 6thSTAR speaks.</p>
-  </div>
-  <figure class="shot" aria-label="MARLOW's product page, everything dimmed except the space under the stars">
-    <picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow.jpg" alt="A product page for MARLOW SUEDE TRAINER TAN, dimmed except the space just under the review stars" width="1250" height="700" loading="lazy"></picture>
-    <span class="spot-hole"></span>
-    <span class="tag">Sample store, made data</span>
-  </figure>
-</div></section>
-
-<section class="beat" id="phrase"><div class="in">
-  <div class="center">
-    <h2>One short phrase, right under your review stars.</h2>
-  </div>
-  <figure class="shot" data-line>
-    <picture><source media="(max-width:700px)" srcset="/assets/marlow-m.jpg"><img src="/assets/marlow.jpg" alt="MARLOW SUEDE TRAINER TAN on 6thstar-sample, with the 6thSTAR under its review stars" width="1250" height="700" loading="lazy"></picture>
-    <button class="star-hit" type="button" aria-expanded="false" aria-label="Open the 6thSTAR line"></button>
-    <div class="line-pop" role="status">{LINE}</div>
-    <span class="tag">Sample store, made data</span>
-  </figure>
-  <p class="hint">Point at the 6thSTAR under the stars (tap on a phone).</p>
-  <div class="center">
-    <p class="lead">It sits where every shopper's eye already goes.</p>
-    <p class="lead">First it confirms the choice. Then it tells the truth, the way a friend would.</p>
+  <p class="sub">The product was fine. The expectation wasn't.</p>
+  <div class="cols3">
+    <div><h3>Shoppers decide in seconds</h3><p>The photo, the stars and the price form an impression before a word is read.</p></div>
+    <div><h3>The impression becomes the yardstick</h3><p>Whatever arrives is judged against what the shopper expected.</p></div>
+    <div><h3>A missed expectation comes back</h3><p>Not because it's faulty, just not what they pictured. The margin goes back with the box.</p></div>
   </div>
 </div></section>
 
-<section class="beat narrow" id="truth"><div class="in">
-  <h2>Your product's own truth.</h2>
-  <p class="lead">Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after.</p>
-  <p class="lead">Stars tell what buyers said. Returns tell what they kept. 6thSTAR finds the one thing shoppers don't expect, and says it in a few words.</p>
+<section class="sec" id="how"><div class="in">
+  <h2>One true phrase, at the moment shoppers decide.</h2>
+  <p class="sub">There's one moment that matters: just before the shopper decides. After it, the expectation has hardened. Before it, one true thing can still shape it.</p>
+  <ol class="steps">
+    <li><div class="pic">{SOURCES_SVG}</div><h3><span>1</span>It reads your store.</h3><p>Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after: your product pages, reviews and returns.</p></li>
+    <li><div class="pic">{POINT_SVG}</div><h3><span>2</span>It finds the one thing shoppers don't expect.</h3><p>Stars tell what buyers said. Returns tell what they kept.</p></li>
+    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div><span class="tag">Sample store, made data</span></figure></div><h3><span>3</span>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
+  </ol>
 </div></section>
 
-<section class="beat narrow" id="every"><div class="in">
-  <h2>Every shopper. Every AI shopper.</h2>
-  <p class="lead">Shoppers see it on your product page.</p>
-  <p class="lead">AI shoppers read the same truth in your product record: through Shopify, to ChatGPT and Copilot, and on the open web beside the star.</p>
-  <p class="lead">Shared with every channel you choose.</p>
+<section class="sec" id="ai"><div class="in two">
+  <div class="words">
+    <p class="kicker">Every shopper. Every AI shopper.</p>
+    <h2>Your product's truth, everywhere it's read.</h2>
+    <ul class="ticks">
+      <li>Shoppers see it on your product page and in your description.</li>
+      <li>AI shoppers read the same truth in your product record, through Shopify to ChatGPT and Copilot, and on the open web beside the star.</li>
+      <li>You choose the channels: AI shoppers, product pages, descriptions, Instagram, Gorgias.</li>
+    </ul>
+  </div>
+  <div class="pic">{CHANNELS_SVG}</div>
 </div></section>
 
-<section class="beat narrow" id="why"><div class="in">
+<section class="sec" id="get"><div class="in">
   <h2>Close the gap, and trust follows.</h2>
-  <p class="lead">Disappointment is the gap between what was expected and what arrived. Close the gap before the sale, and there's less to send back.</p>
-  <p class="lead">Be right, product after product, and trust follows, from shoppers and from the AI shoppers that choose for them.</p>
+  <p class="sub">Be right, product after product, and shoppers and the AI shoppers that choose for them learn to rely on you.</p>
+  <div class="tiles">
+    {tile("Lower returns.", "Fewer surprises, fewer boxes coming back.")}
+    {tile("More shopper trust.", "What arrives is what they expected.")}
+    {tile("More AI-shopper trust.", "Agents read what buyers kept, not only what they said.")}
+    {tile("Your words, untouched.", "6thSTAR only adds. It never rewrites your copy.")}
+    {tile("Your brand's voice.", "Your own praise words lead every line, and you can edit them.")}
+    {tile("See it working.", "Live Results shows returns before, forecast and actual, down to each product.")}
+  </div>
 </div></section>
 
-<section class="beat narrow" id="get"><div class="in">
-  <h2>Lower returns. More shopper trust. More AI-shopper trust.</h2>
-  <p class="lead">See it in Live Results: your returns before, forecast and actual, down to each product.</p>
-  <p class="speaks">About 20 minutes to install.*</p>
-  <p class="lead">Seven steps, each with a guide.</p>
-  <div class="links"><a href="/setup/#line">See how to place the line</a><a href="/setup/#ai">See the AI shoppers setup</a></div>
-  <ul class="points">
-    <li>It only adds; it never changes your words.</li>
-    <li>Your praise words, in your brand's voice.</li>
-    <li>You choose the channels.</li>
-    <li>Uninstall from 6thSTAR's Settings clears everything it added.</li>
-  </ul>
-  <p class="lead">Try it first: <a href="/demo/">the hands-on demo</a>.</p>
-  <p class="note">*Writing your lines depends on how many products you have.</p>
+<section class="sec" id="setup"><div class="in two">
+  <div class="words">
+    <h2>Live in about 20 minutes.*</h2>
+    <p class="sub">Seven steps, each with a guide: Install · Connectors · Channels · Your creative brief · What a return costs you (optional) · Place the line under your review stars · Turn on.</p>
+    <p class="body">You read every line before anything goes live. Uninstall from 6thSTAR's Settings clears everything it added.</p>
+    <div class="acts">{install()}<a class="more" href="/demo/">Try the demo</a><a class="more" href="/setup/">See the setup guides</a></div>
+    <p class="note">*Product upload time varies.</p>
+  </div>
+  <figure class="pic guide-shot"><img src="/assets/guides/line-5.png" alt="The theme editor: the + just below Review stars, outlined, where the 6thSTAR line is added" width="480" height="300" loading="lazy">
+    <figcaption>Placing the line: the + just below Review stars.</figcaption></figure>
 </div></section>
 
-<section class="beat center" id="install"><div class="in">
+<section class="sec" id="story"><div class="in two">
   <div class="film" role="button" tabindex="0" aria-label="Watch The Whole Story, a 30-second film"
        data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-v1-1.jpg" data-vtt="/assets/whole-story-v1-1.vtt">
     <img src="/assets/whole-story-v1-1.jpg" alt="The Whole Story: MARLOW's product page, with the 6thSTAR line open" width="1280" height="720" loading="lazy">
     <span class="play">Watch The Whole Story · 30 seconds</span>
   </div>
-  <h2 style="margin-top:64px">Install 6thSTAR on your Shopify store.</h2>
-  <div class="cta">{install()}</div>
-  <div class="faq">
-    <h3>Questions</h3>
-    <details><summary>What appears on my page?</summary>
-      <p>A small 6thSTAR, right under your review stars. A shopper points at it (or taps it on a phone) and one short line opens. Nothing else on your page changes.</p></details>
-    <details><summary>Which themes work?</summary>
-      <p>Themes with app blocks, such as Shopify's own Horizon: you place the 6thSTAR line under your review stars in the theme editor, and <a href="/setup/#line">the guide</a> shows each click. On a theme without app blocks there's nothing to place; your star still shows.</p></details>
-    <details><summary>What data does it read?</summary>
-      <p>Your products, photos and descriptions; your orders and returns, with return reasons and the notes buyers write; your return policy; your reviews; and your public website, to write your brief. It doesn't ask Shopify for a buyer's name, email, phone number or address. <a href="/privacy/">Privacy</a> has the detail.</p></details>
-    <details><summary>How long until my lines are ready?</summary>
-      <p>Installing takes about 20 minutes. Writing your lines then depends on how many products you have. You read them before anything goes live.</p></details>
-    <details><summary>What happens if I uninstall?</summary>
-      <p>Uninstall from 6thSTAR's Settings and it clears everything it added: the line, the description sentences, the AI shoppers field and its records. If you uninstall from Shopify's own screen instead, the description sentences stay until you remove them.</p></details>
-    <details><summary>What does the beta involve?</summary>
-      <p>A small group of Shopify stores install 6thSTAR before it's listed. We set it up with you on a call, you read your lines before anything goes live, and you tell us what you see.</p></details>
-    <details><summary>Who do I contact?</summary>
-      <p><a href="mailto:{SUPPORT}">{SUPPORT}</a></p></details>
+  <div class="words">
+    <h2>Install 6thSTAR on your Shopify store.</h2>
+    <p class="sub">Join the first stores in the beta.</p>
+    <div class="acts">{install()}</div>
   </div>
+</div>
+<div class="in faq2" id="questions">
+  <h2 class="qh">Questions</h2>
+  <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
 </div></section>
+
+<dialog class="filmbox" aria-label="The 30-second spot"><button class="x" type="button" aria-label="Close">×</button><div class="slot"></div></dialog>
 """ + FOOT
 
 # ── /beta ──
@@ -194,6 +225,7 @@ BETA = head("Install 6thSTAR — beta request", "Ask to install 6thSTAR on your 
   </form>
   <div class="thanks" role="status">
     <h2 style="font-size:32px">Thank you. We'll write to you within two business days.</h2>
+    <p class="lead">Questions in the meantime: <a href="mailto:{CONTACT}">{CONTACT}</a></p>
   </div>
 </div>
 """ + FOOT
@@ -268,11 +300,11 @@ def placeholder(title, desc, h1, body):
 
 TERMS = placeholder("6thSTAR terms", "The 6thSTAR terms of service.", "Terms",
     f'<p class="lead">The 6thSTAR terms are being finalised. They will be published here, with their version and date, before 6thSTAR is listed.</p>'
-    f'<p class="lead">Questions: <a href="mailto:{SUPPORT}">{SUPPORT}</a></p>')
+    f'<p class="lead">Questions: <a href="mailto:{CONTACT}">{CONTACT}</a></p>')
 PRIVACY = placeholder("6thSTAR privacy", "The 6thSTAR privacy policy.", "Privacy",
     f'<p class="lead">The 6thSTAR privacy policy is being finalised. It will be published here, with its version and date, before 6thSTAR is listed.</p>'
     f'<p class="lead">This website sets no cookies and uses no analytics or tracking.</p>'
-    f'<p class="lead">Questions: <a href="mailto:{SUPPORT}">{SUPPORT}</a></p>')
+    f'<p class="lead">Questions: <a href="mailto:{CONTACT}">{CONTACT}</a></p>')
 DEMO = placeholder("6thSTAR demo", "A hands-on 6thSTAR demo.", "The hands-on demo",
     '<p class="lead">Coming soon: try 6thSTAR yourself, on a sample store with made data. No login.</p>')
 
