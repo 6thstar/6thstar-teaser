@@ -112,7 +112,7 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   <div class="words">
     <p class="sub">6thSTAR is a Shopify app that adds one short, true phrase right under your review stars, so shoppers know what to expect before they buy.</p>
     <div class="acts">
-      <button class="playlink" type="button" data-film-open data-src="/assets/spot-v2-8.mp4" data-poster="/assets/spot-v2-8.jpg" data-vtt="/assets/spot-v2-8.vtt">Watch the 30-second spot</button>
+      <button class="playlink" type="button" data-film-open data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-1.vtt">Watch the 30-second film</button>
       <a class="more" href="#how">See how it works ↓</a>
     </div>
   </div>
@@ -184,24 +184,17 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   </figure>
 </div></section>
 
-<section class="sec" id="story"><div class="in two">
-  <div class="film" role="button" tabindex="0" aria-label="Watch The Whole Story, a 30-second film"
-       data-src="/assets/whole-story-v1-1.mp4" data-poster="/assets/whole-story-poster.jpg" data-vtt="/assets/whole-story-v1-1.vtt">
-    <img src="/assets/whole-story-poster.jpg" alt="The Whole Story: the 6thSTAR line, Great trainer… runs a little narrow across the foot…" width="1280" height="720" loading="lazy">
-    <span class="play">Watch The Whole Story · 30 seconds</span>
-  </div>
-  <div class="words">
-    <h2>Install 6thSTAR on your Shopify store.</h2>
-    <p class="sub">Join the first stores in the beta.</p>
-    <div class="acts">{install()}</div>
-  </div>
+<section class="sec" id="story"><div class="in cta-only">
+  <h2>Install 6thSTAR on your Shopify store.</h2>
+  <p class="sub">Join the first stores in the beta.</p>
+  <div class="acts">{install()}</div>
 </div>
 <div class="in faq2" id="questions">
   <h2 class="qh">Questions</h2>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
 </div></section>
 
-<dialog class="filmbox" aria-label="The 30-second spot"><button class="x" type="button" aria-label="Close">×</button><div class="slot"></div></dialog>
+<dialog class="filmbox" aria-label="The Whole Story, a 30-second film"><button class="x" type="button" aria-label="Close">×</button><div class="slot"></div></dialog>
 """ + FOOT
 
 # ── /beta ──

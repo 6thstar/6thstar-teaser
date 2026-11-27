@@ -311,3 +311,8 @@ body{color:#333;font-size:17.5px}
 .hero2 .sub{margin-top:0}
 .sec.hero2:first-of-type{padding-top:28px}
 @media (max-width:700px){.intro-mark{width:150px;height:150px}.intro{padding-bottom:28px}}
+
+/* v2.0.3 (Earl 2026-11-27): the hero opens The Whole Story; section 7 is the call alone until the How to install film is ready */
+.cta-only{text-align:center}
+.cta-only .sub{margin-left:auto;margin-right:auto}
+.cta-only .acts{justify-content:center}
