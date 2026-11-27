@@ -25,7 +25,15 @@ document.querySelectorAll(".film[data-src]").forEach(box => {
       t.kind = "captions"; t.srclang = "en"; t.label = "English"; t.src = box.dataset.vtt;
       v.appendChild(t);
     }
-    box.replaceChildren(v);
+    /* Tracy 2026-11-27: a Restart button brings the film back to its cover screen */
+    const cover = [...box.childNodes];
+    const r = document.createElement("button");
+    r.type = "button"; r.className = "restart"; r.textContent = "↺ Restart";
+    r.addEventListener("click", e => {
+      e.stopPropagation(); v.pause(); v.removeAttribute("src"); v.load();
+      box.replaceChildren(...cover); delete box.dataset.started;
+    });
+    box.replaceChildren(v, r);
     v.play().catch(() => {});
   };
   box.addEventListener("click", start);
