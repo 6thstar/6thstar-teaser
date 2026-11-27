@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v2.0"
+VERSION = "v3.4"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -37,6 +37,7 @@ FOOT = f"""</main>
 <footer class="foot"><div class="in">
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
+  <span class="ver">Version {VERSION[1:]}</span>
 </div></footer>
 <script src="/assets/site.js"></script>
 </body>
