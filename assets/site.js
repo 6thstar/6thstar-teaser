@@ -57,7 +57,7 @@ document.querySelectorAll("[data-film-open]").forEach(b => b.addEventListener("c
   x.addEventListener("click", () => { v.pause(); wrap.remove(); shot.hidden = false; b.focus(); });
   wrap.append(v, x);
   shot.hidden = true; shot.after(wrap);
-  wrap.scrollIntoView({ block: "nearest" });
+  wrap.scrollIntoView({ block: matchMedia("(min-width:900px)").matches ? "start" : "nearest" });
   v.play().catch(() => {});
 }));
 /* a film stops when another card is chosen */

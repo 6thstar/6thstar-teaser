@@ -607,3 +607,9 @@ svg text:not([fill]){fill:#111}
     padding:14px 0 18px 28px;border-top:0;background:#fff}
   .fpanel{padding-bottom:150px!important}
 }
+/* v3.17 (Tracy: "video covered by Next"): from 900 px the playing film is sized to fit between the header and the
+   Next headline, and the page scrolls so all of it shows */
+@media (min-width:900px){
+  .herofilm{max-width:calc((100vh / var(--z,1) - var(--hdr,93px) - var(--foot,98px) - 120px) * 16 / 9);
+    scroll-margin-top:calc(var(--hdr,93px) + 16px)}
+}
