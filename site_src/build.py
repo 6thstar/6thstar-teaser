@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.14"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.15"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -120,7 +120,7 @@ QS = [
 CARDS = [
     ("top", '<img src="/assets/marlow-hero.jpg" alt="">', "fth-shoe", "Reduce Returns and Build Trust"),
     ("why", "<i></i><i></i><i></i>", "fth-why", "Most returns start with a surprise"),
-    ("how", "<em>1</em><em>2</em><em>3</em>", "fth-how", "One true phrase, at the moment shoppers decide"),
+    ("how", '<svg viewBox="0 0 96 60" aria-hidden="true"><circle cx="14" cy="30" r="7" fill="#ff9900"/><rect x="28" y="19" width="62" height="22" rx="11" fill="#fff8ec" stroke="#d9c39b" stroke-width="1.5"/></svg>', "fth-how", "One true phrase, at the moment shoppers decide"),
     ("ai", '<svg viewBox="0 0 96 60" aria-hidden="true"><g stroke="#9a9a9a" stroke-width="2"><path d="M48 30 L16 12"/><path d="M48 30 L80 12"/><path d="M48 30 L16 48"/><path d="M48 30 L80 48"/></g><g fill="#fff" stroke="#9a9a9a" stroke-width="2"><circle cx="16" cy="12" r="6"/><circle cx="80" cy="12" r="6"/><circle cx="16" cy="48" r="6"/><circle cx="80" cy="48" r="6"/></g><circle cx="48" cy="30" r="9" fill="#ff9900"/></svg>', "fth-ai", "Your product's truth, everywhere it's read"),
     ("get", "<i></i>" * 6, "fth-get", "Close the gap, and trust follows"),
     ("story", "<b></b>", "fth-film", "How to install"),
@@ -170,9 +170,9 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
   <h2>One true phrase, at the moment shoppers decide.</h2>
   <p class="sub">There's one moment that matters: just before the shopper decides. After it, the expectation has hardened. Before it, one true thing can still shape it.</p>
   <ol class="steps">
-    <li><div class="pic">{SOURCES_SVG}</div><h3><span>1</span>It reads your store.</h3><p>Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after: your product pages, reviews and returns.</p></li>
-    <li><div class="pic">{POINT_SVG}</div><h3><span>2</span>It finds the one thing shoppers don't expect.</h3><p>Stars tell what buyers said. Returns tell what they kept.</p></li>
-    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div></figure></div><h3><span>3</span>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
+    <li><div class="pic">{SOURCES_SVG}</div><h3>It reads your store.</h3><p>Over 100 signals compare everything shoppers are promised before they buy with what buyers experienced after: your product pages, reviews and returns.</p></li>
+    <li><div class="pic">{POINT_SVG}</div><h3>It finds the one thing shoppers don't expect.</h3><p>Stars tell what buyers said. Returns tell what they kept.</p></li>
+    <li><div class="pic"><figure class="shot open mini"><div class="frame"><img src="/assets/marlow-stars.jpg" alt="MARLOW's title, price and review stars, with the 6thSTAR line open under them" width="510" height="320" loading="lazy"><div class="line-pop">{LINE}</div></div></figure></div><h3>It says it, right under your stars.</h3><p>First it confirms the choice, then it tells the truth, the way a friend would: "{LINE}"</p></li>
   </ol>
 </div></section>
 

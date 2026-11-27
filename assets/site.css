@@ -586,3 +586,18 @@ svg text:not([fill]){fill:#111}
   .fth svg{max-height:36px}
   .fth-q{font-size:24px}
 }
+/* v3.15 (Tracy: "this should be default size", shown at Chrome 110%): on screens 1280 px and wider the whole page
+   is drawn at 110%; heights that use the screen's height are divided back so the cards and footer still fit */
+@media (min-width:1280px){
+  :root{--z:1.1}
+  html{zoom:1.1}
+  .fnav{height:calc(100vh / var(--z) - var(--hdr,93px) - var(--foot))!important}
+  .fpanel{min-height:calc(100vh / var(--z) - var(--hdr,93px))}
+}
+@media (min-width:1280px) and (max-height:1000px){
+  .fnav{gap:7px!important;padding-top:14px!important}
+  .fcard{padding:6px 10px!important;font-size:14px}
+  .fth{height:40px!important}
+  .fth svg{max-height:36px}
+  .fth-q{font-size:24px}
+}
