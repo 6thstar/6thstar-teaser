@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.24"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.25"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -165,7 +165,7 @@ HOME = head("6thSTAR — Reduce Returns and Build Trust",
     <div><h3>A missed expectation comes back</h3><p>Not because it's faulty, just not what they expected. The margin goes back with the box.</p></div>
   </div>
   <figure class="shot open page-shot">
-    <div class="frame"><img src="/assets/marlow-page-card.jpg" alt="MARLOW SUEDE TRAINER TAN on a product page, with the 6thSTAR phrase open under the review stars" width="1200" height="640" loading="lazy">
+    <div class="frame"><img src="/assets/marlow-page-card-v2.jpg" alt="MARLOW SUEDE TRAINER TAN on a product page, with the 6thSTAR phrase open under the review stars" width="1200" height="640" loading="lazy">
     <div class="line-pop" data-room="0.4">{LINE}</div></div>
   </figure>
 </div></section>
