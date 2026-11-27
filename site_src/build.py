@@ -6,7 +6,7 @@ from html import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 CONTACT = "trosen@rosengroup.us"         # Script v2.0: the contact email, for now (everywhere, the setup guides too: Tracy 2026-11-27)
-VERSION = "v3.13"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
+VERSION = "v3.14"   # shown in the footer on every page (Tracy 2026-11-27); bump with every release
 
 def head(title, desc):
     return f"""<!doctype html>
@@ -49,6 +49,7 @@ FOOT = f"""</main>
 <footer class="foot"><div class="in">
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <nav><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
+  <span class="copy">&copy; 2026 Rosengroup, LLC</span>
   <span class="ver">Version {VERSION[1:]}</span>
 </div></footer>
 <script src="/assets/site.js"></script>
@@ -78,7 +79,7 @@ POINT_SVG = """<svg class="draw" viewBox="0 0 320 200" role="img" aria-label="Th
   <circle cx="40" cy="100" r="13" fill="#ff9900"/>
   <path d="M53 100 L 70 100" stroke="#bdbdbd" stroke-width="1.5"/>
   <rect x="70" y="80" width="244" height="40" rx="12" fill="#fff8ec" stroke="#d9c39b"/>
-  <g font-family="Roboto, sans-serif" fill="#1d1d1d"><text x="82" y="105" font-size="12.5">Runs a little narrow across the foot</text></g>
+  <g font-family="Roboto, sans-serif" fill="#111"><text x="82" y="105" font-size="12.5">Runs a little narrow across the foot</text></g>
 </svg>"""
 
 CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" aria-label="The product record in the centre, with lines out to the product page, the description, AI shoppers through Shopify, the open web, Instagram and Gorgias">
@@ -89,11 +90,11 @@ CHANNELS_SVG = """<svg class="draw channels" viewBox="0 0 520 400" role="img" ar
     <rect x="12" y="42" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="92" y="69">Product page</text>
     <rect x="348" y="42" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="428" y="69">Description</text>
     <rect x="2" y="178" width="140" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="72" y="205">Open web</text>
-    <rect x="378" y="166" width="140" height="68" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="448" y="195">AI shoppers</text><text x="448" y="216" font-size="13" fill="#555">through Shopify</text>
+    <rect x="378" y="166" width="140" height="68" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="448" y="195">AI shoppers</text><text x="448" y="216" font-size="13" fill="#222">through Shopify</text>
     <rect x="12" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="92" y="341">Instagram</text>
     <rect x="348" y="314" width="160" height="44" rx="22" fill="#fff" stroke="#cfcfcf"/><text x="428" y="341">Gorgias</text>
     <rect x="170" y="158" width="180" height="84" rx="14" fill="#fff8ec" stroke="#d9c39b"/>
-    <text x="260" y="195" font-size="18" font-weight="500" fill="#1d1d1d">Product record</text><text x="260" y="220" font-size="14" fill="#555">your product's truth</text>
+    <text x="260" y="195" font-size="18" font-weight="500" fill="#111">Product record</text><text x="260" y="220" font-size="14" fill="#222">your product's truth</text>
   </g>
 </svg>"""
 
