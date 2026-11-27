@@ -120,6 +120,7 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   </figure>
 </div></section>
 
+<div class="duo">
 <section class="sec" id="why"><div class="in">
   <h2>Most returns start with a surprise.</h2>
   <p class="sub">The product was fine. The expectation wasn't.</p>
@@ -140,6 +141,8 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   </ol>
 </div></section>
 
+</div>
+<div class="duo">
 <section class="sec" id="ai"><div class="in two">
   <div class="words">
     <p class="kicker">Every shopper. Every AI shopper.</p>
@@ -167,6 +170,8 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   </div>
 </div></section>
 
+</div>
+<div class="duo">
 <section class="sec" id="story"><div class="in story-big">
   <div class="film" role="button" tabindex="0" aria-label="Watch How to install 6thSTAR, a 52-second film"
        data-src="/assets/how-to-install-v1-1.mp4" data-poster="/assets/how-to-install-poster-v1-1.jpg" data-vtt="/assets/how-to-install-v1-1.vtt">
@@ -184,6 +189,7 @@ HOME = head("6thSTAR — Reduce returns. Build trust.",
   <h2 class="qh">Questions</h2>
   <div class="qcols"><div>{"".join(QS[:4])}</div><div>{"".join(QS[4:])}</div></div>
 </div></section>
+</div>
 
 <dialog class="filmbox" aria-label="The Whole Story, a 30-second film"><button class="x" type="button" aria-label="Close">×</button><div class="slot"></div></dialog>
 """ + FOOT

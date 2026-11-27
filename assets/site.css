@@ -377,13 +377,6 @@ body{color:#333;font-size:17.5px}
    Columns stay side by side down to 700 px so every section fits. Phones (under 700 px wide) scroll as before. ── */
 :root{--hdr:93px}
 @media (min-width:700px) and (min-height:560px){
-  html{scroll-snap-type:y proximity;scroll-padding-top:var(--hdr)}
-  .sec,.sec:first-of-type,.sec.hero2:first-of-type,.sec + .sec{
-    min-height:calc(100svh - var(--hdr));margin-top:0;
-    padding:clamp(20px,4.5vh,64px) var(--gutter);
-    display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start}
-  .sec + .sec{border-top:1px solid var(--rule)}
-  .sec .in{flex:0 0 auto}
   /* type and gaps follow the screen's height as well as its width */
   .sec h2{font-size:clamp(28px,min(3.3vw,5.4vh),46px)}
   .intro h1{font-size:clamp(34px,min(4.4vw,7vh),58px)}
@@ -404,7 +397,6 @@ body{color:#333;font-size:17.5px}
   .qcols{grid-template-columns:1fr 1fr}
   .sec .faq2{margin-top:0}
   /* the film fills its screen without pushing the request off it */
-  .story-big .film{width:min(100%,calc((100svh - var(--hdr) - 420px) * 16 / 9));margin:0 auto}
   .story-big .words{margin-top:clamp(16px,3vh,40px)}
 }
 @media (min-width:700px) and (max-width:899px) and (min-height:560px){
@@ -426,3 +418,34 @@ body{color:#333;font-size:17.5px}
   .cols3>div{padding-top:clamp(14px,2vh,24px)}
 }
 @media (min-width:700px) and (min-height:560px){.mini .line-pop{top:auto;bottom:6%}}
+
+/* ── v2.2 (Tracy 2026-11-27: "way too much white space. try two blocks side by side so there are fewer pages"; storyboard approved):
+   Home = the hero, then three rows of two blocks side by side; each block only as tall as its content; no snapping.
+   Under 900 px the blocks stack, as before. ── */
+.sec.hero2:first-of-type{padding-top:clamp(40px,6vh,72px);padding-bottom:clamp(40px,6vh,72px)}
+.duo{border-top:1px solid var(--rule)}
+@media (min-width:900px){
+  .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,4vw,72px);align-items:start;
+       max-width:calc(var(--max) + 2 * var(--gutter));margin:0 auto;padding:clamp(48px,7vh,88px) var(--gutter)}
+  .duo>.sec,.duo>.sec + .sec,.duo>.sec:first-of-type{padding:0;margin:0;border:0;min-height:0;display:block}
+  .duo .sec .in{max-width:none}
+  .duo .sec h2{font-size:clamp(26px,2.3vw,38px)}
+  .duo .sub{font-size:clamp(17px,1.35vw,21px);max-width:none}
+  .duo .cols3{grid-template-columns:1fr;gap:16px;margin-top:22px}
+  .duo .cols3>div{padding-top:12px}
+  .duo .steps{grid-template-columns:1fr;gap:14px;margin-top:22px}
+  .duo .steps li{display:grid;grid-template-columns:170px minmax(0,1fr);gap:0 18px;align-items:start}
+  .duo .steps .pic{grid-row:span 2;height:128px;margin:0;padding:8px}
+  .duo .steps .pic .mini{max-width:150px}
+  .duo .steps .mini .line-pop{font-size:9.5px;padding:4px 6px}
+  .duo .steps .mini .tag{font-size:9px;padding:2px 6px;margin:4px 6px}
+  .duo .draw{max-height:110px}
+  .duo #ai .two{grid-template-columns:1fr;gap:18px}
+  .duo .draw.channels{max-height:300px}
+  .duo .tiles{grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .duo .tile{padding:16px 18px}
+  .duo .story-big .film{width:100%}
+  .duo .story-big .words{margin-top:24px}
+  .duo .qcols{grid-template-columns:1fr;margin-top:12px}
+  .duo .qh{margin-top:0}
+}
