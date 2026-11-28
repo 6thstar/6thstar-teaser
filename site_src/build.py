@@ -49,7 +49,7 @@ FOOT = f"""</main>
 <footer class="foot"><div class="in">
   <img src="/assets/6thstar-mark.png" alt="6thSTAR™" width="72" height="72">
   <nav><a href="mailto:{CONTACT}">{CONTACT}</a></nav>
-  <span class="copy">&copy; 2026 Rosengroup, LLC</span>
+  <span class="copy">&copy; 2026 Rosen Group, LLC</span>
   <span class="ver">Version {VERSION[1:]}</span>
 </div></footer>
 <script src="/assets/site.js"></script>
